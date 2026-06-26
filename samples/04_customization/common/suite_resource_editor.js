@@ -1,4 +1,4 @@
-function initResourceEditForm() {
+function initResource编辑Form() {
 	gantt.$lightboxControl.resources.addForm = function () {
 
 		this.resourceStore = gantt.$resourceStore;
@@ -16,7 +16,7 @@ function initResourceEditForm() {
 			gantt._resourceAssigner.data.remove(id);
 		};
 
-		this.unassignAllResources = function () {
+		this.unassignAll资源 = function () {
 			var entries = gantt._resourceAssigner.data._order;
 			for (var i = 0; i < entries.length; i++) {
 				this.unassignResource(entries[i].id)
@@ -60,9 +60,9 @@ function initResourceEditForm() {
 			var layoutScrollLeft = layoutElement.scrollLeft;
 			var layoutScroll = { left: layoutScrollLeft, top: layoutScrollTop };
 
-			var resourceEditorScroll = gantt._resourceEditor._scroll;
+			var resource编辑orScroll = gantt._resource编辑or._scroll;
 
-			return { el1: layoutScroll, el2: resourceEditorScroll }
+			return { el1: layoutScroll, el2: resource编辑orScroll }
 		};
 
 
@@ -128,7 +128,7 @@ function initResourceEditForm() {
 			}, 100);
 		};
 
-		this.deleteAllResources = function () {
+		this.deleteAll资源 = function () {
 			var resourceData = gantt.$resourceStore.getItems();
 
 			resourceData.forEach(function (el) {
@@ -152,45 +152,45 @@ function initResourceEditForm() {
 
 		var resourceAssignColumns = [
 			{
-				width: 50, id: "add", header: [{ text: "<input type=button value='✚' data-onclick='assignResource' class='dhx_button dhx_button--size_small' title='Add a new resource assignment'>" }], sortable: false, htmlEnable: true, editable: false, template: function (text, row, col) {
+				width: 50, id: "add", header: [{ text: "<input type=button value='✚' data-onclick='assignResource' class='dhx_button dhx_button--size_small' title='添加 a new resource assignment'>" }], sortable: false, htmlEnable: true, editable: false, template: function (text, row, col) {
 					return "<input type=button value='⇊' data-onclick='copyResourceAssignment' data-onclick_argument='" + row.id + "' class='dhx_button dhx_button--size_small' title='Clone this assignment'>";
 				}
 			},
 			{
-				minWidth: 100, id: "resource_id", header: [{ text: "Name" }], editorType: "select", options: [], htmlEnable: true, template: function (text, row, col) {
+				minWidth: 100, id: "resource_id", header: [{ text: "Name" }], editor类型: "select", options: [], htmlEnable: true, template: function (text, row, col) {
 					return col.optionLabels[text];
 				}
 			},
-			{ width: 65, id: "value", header: [{ text: "Value" }], editorType: "number", sortable: false, options: [] },
-			{ width: 100, id: "mode", header: [{ text: "Mode" }], editorType: "select", sortable: false, options: ["default", "fixedDuration", "fixedDates"], htmlEnable: true },
-			{ width: 80, id: "start_date", header: [{ text: "Start" }], type: "date", format: "%Y-%m-%d", htmlEnable: true, },
+			{ width: 65, id: "value", header: [{ text: "Value" }], editor类型: "number", sortable: false, options: [] },
+			{ width: 100, id: "mode", header: [{ text: "Mode" }], editor类型: "select", sortable: false, options: ["default", "fixed工期", "fixedDates"], htmlEnable: true },
+			{ width: 80, id: "start_date", header: [{ text: "开始" }], type: "date", format: "%Y-%m-%d", htmlEnable: true, },
 			{ width: 80, id: "end_date", header: [{ text: "End" }], type: "date", format: "%Y-%m-%d", htmlEnable: true, },
-			{ width: 65, id: "delay", header: [{ text: "Delay" }], editorType: "number", sortable: false, options: [] },
+			{ width: 65, id: "delay", header: [{ text: "Delay" }], editor类型: "number", sortable: false, options: [] },
 			{
-				width: 55, id: "control", header: [{ text: "<input type=button value='✖' data-onclick='unassignAllResources' class='dhx_button dhx_button--size_small' title='Remove all assignments'>" }], sortable: false, htmlEnable: true, editable: false, template: function (text, row, col) {
+				width: 55, id: "control", header: [{ text: "<input type=button value='✖' data-onclick='unassignAll资源' class='dhx_button dhx_button--size_small' title='Remove all assignments'>" }], sortable: false, htmlEnable: true, editable: false, template: function (text, row, col) {
 					return "<input type=button value='✖' data-onclick='unassignResource' data-onclick_argument='" + row.id + "' class='dhx_button dhx_button--size_small' title='Unassign resource'>";
 				}
 			}
 		];
 
 
-		var resourceEditColumns = [
+		var resource编辑Columns = [
 			{
-				width: 50, id: "add", header: [{ text: "<input type=button value='✚' data-onclick='addResource' class='dhx_button dhx_button--size_small' title='Add a new resource'>" }], sortable: false, htmlEnable: true, editable: false, template: function (text, row, col) {
+				width: 50, id: "add", header: [{ text: "<input type=button value='✚' data-onclick='addResource' class='dhx_button dhx_button--size_small' title='添加 a new resource'>" }], sortable: false, htmlEnable: true, editable: false, template: function (text, row, col) {
 					return "<input type=button value='⇊' data-onclick='cloneResource' data-onclick_argument='" + row.id + "' class='dhx_button dhx_button--size_small' title='Clone this resource'>";
 				}
 			},
-			{ minWidth: 120, id: "text", header: [{ text: "Name" }], editorType: "input", type: "string", htmlEnable: true, },
+			{ minWidth: 120, id: "text", header: [{ text: "Name" }], editor类型: "input", type: "string", htmlEnable: true, },
 			{
-				minWidth: 120, width: 120, id: "parent", header: [{ text: "Department" }], editorType: "select", options: [], htmlEnable: true, template: function (text, row, col) {
+				minWidth: 120, width: 120, id: "parent", header: [{ text: "Department" }], editor类型: "select", options: [], htmlEnable: true, template: function (text, row, col) {
 					return col.optionLabels[text];
 				}
 			},
-			{ minWidth: 100, width: 100, id: "calendar", header: [{ text: "Calendar" }], editorType: "select", options: [], htmlEnable: true },
+			{ minWidth: 100, width: 100, id: "calendar", header: [{ text: "Calendar" }], editor类型: "select", options: [], htmlEnable: true },
 			{ width: 70, id: "hide", header: [{ text: "Hide" }], type: "boolean", htmlEnable: true },
-			{ width: 70, id: "unit", header: [{ text: "Unit" }], editorType: "input", type: "string", sortable: false, options: [] },
+			{ width: 70, id: "unit", header: [{ text: "Unit" }], editor类型: "input", type: "string", sortable: false, options: [] },
 			{
-				width: 60, id: "delete", header: [{ text: "<input type=button value='✖' data-onclick='deleteAllResources' class='dhx_button dhx_button--size_small' title='Remove all resources'>" }], sortable: false, htmlEnable: true, editable: false, template: function (text, row, col) {
+				width: 60, id: "delete", header: [{ text: "<input type=button value='✖' data-onclick='deleteAll资源' class='dhx_button dhx_button--size_small' title='Remove all resources'>" }], sortable: false, htmlEnable: true, editable: false, template: function (text, row, col) {
 					return "<input type=button value='✖' data-onclick='deleteResource' data-onclick_argument='" + row.id + "' class='dhx_button dhx_button--size_small' title='Remove this resource'>";
 				}
 			}
@@ -199,10 +199,10 @@ function initResourceEditForm() {
 
 
 
-		if (gantt._resourceLayout) {
-			gantt._resourceLayout.destructor();
+		if (gantt._resource布局) {
+			gantt._resource布局.destructor();
 		}
-		gantt._resourceLayout = new dhx.Layout(null, {
+		gantt._resource布局 = new dhx.布局(null, {
 			// type: "none",
 			rows: [
 				{
@@ -219,32 +219,32 @@ function initResourceEditForm() {
 				},
 				{
 					id: "header2",
-					html: "<b>Edit resources:</b>",
+					html: "<b>编辑 resources:</b>",
 					minHeight: "20px"
 				},
 				{
-					id: "resourceEdit",
-					html: "<div id='resourceEdit'></div>",
+					id: "resource编辑",
+					html: "<div id='resource编辑'></div>",
 					minHeight: "250px"
 					// collapsable: true,
 				}
 			]
 		});
 
-		gantt._tabbar.getCell("resources").attach(gantt._resourceLayout);
+		gantt._tabbar.getCell("resources").attach(gantt._resource布局);
 
 
 
 
 
 		if (gantt._resourceAssigner) gantt._resourceAssigner.destructor();
-		if (gantt._resourceEditor) gantt._resourceEditor.destructor();
+		if (gantt._resource编辑or) gantt._resource编辑or.destructor();
 
 		resourceAssignColumns[1].options = [];
 		resourceAssignColumns[5].options = [''];
 
 		var owners = gantt._lightbox_task[gantt.config.resource_property] || [];
-		var taskResources = [];
+		var task资源 = [];
 
 		var resourceData = gantt.$resourceStore.getItems();
 		resourceAssignColumns[1].optionLabels = {};
@@ -257,26 +257,26 @@ function initResourceEditForm() {
 			for (var i = 0; i < owners.length; i++) {
 				if (owners[i].resource_id == el.id) {
 					var resourceRow = gantt.copy(owners[i]);
-					//else resourceEditColumns[6].options.push(el.text);
+					//else resource编辑Columns[6].options.push(el.text);
 
 					resourceRow.text = gantt.getDatastore("resource").pull[resourceRow.resource_id].text
 					resourceRow.value = owners[i].value || '8';
 					resourceRow.start_date = owners[i].start_date || '';
 					resourceRow.end_date = owners[i].end_date || '';
-					taskResources.push(resourceRow);
+					task资源.push(resourceRow);
 				}
 			}
 		})
 
 
-		gantt._resourceAssigner = new dhx.Grid(null, {
+		gantt._resourceAssigner = new dhx.表格(null, {
 			columns: resourceAssignColumns,
 			autoHeight: true,
 			autoWidth: true,
 			editable: true,
-			data: taskResources
+			data: task资源
 		});
-		gantt._resourceLayout.getCell("resourceAssign").attach(gantt._resourceAssigner);
+		gantt._resource布局.getCell("resourceAssign").attach(gantt._resourceAssigner);
 
 
 		gantt._resourceAssigner.events.on("CellClick", function (row, column, e) {
@@ -285,7 +285,7 @@ function initResourceEditForm() {
 			}
 		});
 
-		gantt._resourceAssigner.events.on("AfterEditStart", function (row, col, editorType) {
+		gantt._resourceAssigner.events.on("After编辑开始", function (row, col, editor类型) {
 			if (col.id == "resource_id") {
 				dhx.awaitRedraw().then(function () {
 					var selectEl = document.querySelector(".dhx_cell-editor__select");
@@ -301,7 +301,7 @@ function initResourceEditForm() {
 		});
 
 
-		gantt._resourceAssigner.events.on("BeforeEditEnd", function (value, row, column) {
+		gantt._resourceAssigner.events.on("Before编辑End", function (value, row, column) {
 			gantt._lightbox_task[gantt.config.resource_property] = gantt._lightbox_task[gantt.config.resource_property] || [{ resource_id: value }];
 			var owner = gantt._lightbox_task[gantt.config.resource_property];
 			owner.forEach(function (el) {
@@ -312,7 +312,7 @@ function initResourceEditForm() {
 			})
 		});
 
-		gantt._resourceAssigner.events.on("AfterEditEnd", function (value, row, column) {
+		gantt._resourceAssigner.events.on("After编辑End", function (value, row, column) {
 			var owner = gantt._lightbox_task[gantt.config.resource_property];
 			owner.forEach(function (el) {
 				if (el.$id == row.$id && column.id != "resource_id") {
@@ -339,13 +339,13 @@ function initResourceEditForm() {
 		});
 
 
-		resourceEditColumns[2].options = ["0"];
-		resourceEditColumns[2].optionLabels = { "0": 'Root Level' };
+		resource编辑Columns[2].options = ["0"];
+		resource编辑Columns[2].optionLabels = { "0": 'Root Level' };
 
 		var calendars = gantt.getCalendars();
-		resourceEditColumns[3].options = [];
+		resource编辑Columns[3].options = [];
 		calendars.forEach(function (el) {
-			resourceEditColumns[3].options.push(el.id);
+			resource编辑Columns[3].options.push(el.id);
 		})
 
 
@@ -354,27 +354,27 @@ function initResourceEditForm() {
 			el.hide = el.hide || false;
 			el.calendar = el.calendar || "global";
 
-			resourceEditColumns[2].options.push(el.id);
-			resourceEditColumns[2].optionLabels[el.id] = el.text;
+			resource编辑Columns[2].options.push(el.id);
+			resource编辑Columns[2].optionLabels[el.id] = el.text;
 		})
 
 
-		gantt._resourceEditor = new dhx.Grid(null, {
-			columns: resourceEditColumns,
+		gantt._resource编辑or = new dhx.表格(null, {
+			columns: resource编辑Columns,
 			autoHeight: true,
 			autoWidth: true,
 			editable: true,
 			data: resourceData
 		});
-		gantt._resourceLayout.getCell("resourceEdit").attach(gantt._resourceEditor);
+		gantt._resource布局.getCell("resource编辑").attach(gantt._resource编辑or);
 
-		gantt._resourceEditor.events.on("CellClick", function (row, column, e) {
+		gantt._resource编辑or.events.on("CellClick", function (row, column, e) {
 			if (column.editable !== false) {
-				gantt._resourceEditor.editCell(row.id, column.id);
+				gantt._resource编辑or.editCell(row.id, column.id);
 			}
 		});
 
-		gantt._resourceEditor.events.on("AfterEditStart", function (row, col, editorType) {
+		gantt._resource编辑or.events.on("After编辑开始", function (row, col, editor类型) {
 			if (col.id == "parent") {
 				dhx.awaitRedraw().then(function () {
 					var selectEl = document.querySelector(".dhx_cell-editor__select");
@@ -394,7 +394,7 @@ function initResourceEditForm() {
 			}
 		});
 
-		gantt._resourceEditor.events.on("AfterEditEnd", function (value, row, column) {
+		gantt._resource编辑or.events.on("After编辑End", function (value, row, column) {
 			if (column.id == "calendar") {
 				gantt.config.resource_calendars[row.id] = row.calendar;
 			}

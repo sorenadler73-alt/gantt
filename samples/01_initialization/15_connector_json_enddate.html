@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Loading tasks with start/end dates</title>
+	<title>加载带开始/结束日期的任务</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<script src="../common/webserver_warning.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
@@ -21,7 +21,7 @@
 	gantt.attachEvent("onAjaxError", function(request){
 		if (!request.status || !request.response){
 			gantt.message({
-				text: webserverWarningText,
+				text: webserverWarning文本,
 				expire: -1
 			})
 		}

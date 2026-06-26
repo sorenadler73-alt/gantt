@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Fixed project dates</title>
+	<title>固定项目日期</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 
@@ -28,27 +28,27 @@
 	var tasks = {
 		data: [
 			{
-				id: 4, text: "Project #1", start_date: "02-04-2023", duration: 0,
+				id: 4, text: "项目 #1", start_date: "02-04-2023", duration: 0,
 				progress: 0.4, open: true
 			},
 			{
-				id: 5, text: "Task #2.1", start_date: "02-04-2023", duration: 8,
+				id: 5, text: "任务 #2.1", start_date: "02-04-2023", duration: 8,
 				progress: 0.6, parent: 4
 			},
 			{
-				id: 6, text: "Task #2.2", start_date: "11-04-2023", duration: 8,
+				id: 6, text: "任务 #2.2", start_date: "11-04-2023", duration: 8,
 				progress: 0.6, parent: 4
 			},
 			{
-				id: 7, text: "Project #2", end_date: "19-04-2023", duration: 0,
+				id: 7, text: "项目 #2", end_date: "19-04-2023", duration: 0,
 				progress: 0.4, open: true
 			},
 			{
-				id: 8, text: "Task #3.1", start_date: "02-04-2023", duration: 8,
+				id: 8, text: "任务 #3.1", start_date: "02-04-2023", duration: 8,
 				progress: 0.6, parent: 7
 			},
 			{
-				id: 9, text: "Task #3.2", start_date: "11-04-2023", duration: 8,
+				id: 9, text: "任务 #3.2", start_date: "11-04-2023", duration: 8,
 				progress: 0.6, parent: 7
 			}
 
@@ -97,8 +97,8 @@
 		task.start_date = new Date(limit.start_date)
 	}
 
-	gantt.attachEvent("onTaskDrag", function (id, mode, task, original, e) {
-		var parent = task.parent ? gantt.getTask(task.parent) : null,
+	gantt.attachEvent("on任务Drag", function (id, mode, task, original, e) {
+		var parent = task.parent ? gantt.get任务(task.parent) : null,
 			children = gantt.getChildren(id),
 			modes = gantt.config.drag_mode;
 
@@ -125,7 +125,7 @@
 
 		//check children constraints
 		for (var i = 0; i < children.length; i++) {
-			var child = gantt.getTask(children[i]);
+			var child = gantt.get任务(children[i]);
 			if (+task.end_date < +child.end_date) {
 				limitLeft(task, child);
 			} else if (+task.start_date > +child.start_date) {

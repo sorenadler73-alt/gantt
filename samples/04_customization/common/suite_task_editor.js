@@ -1,6 +1,6 @@
-function initTaskEditForm() {
+function init任务编辑Form() {
 	gantt.$lightboxControl.task.addForm = function () {
-		var task = gantt.getTask(gantt._lightbox_id);
+		var task = gantt.get任务(gantt._lightbox_id);
 		if (gantt._lightbox_task) {
 			task = gantt._lightbox_task;
 		}
@@ -9,7 +9,7 @@ function initTaskEditForm() {
 			text: {
 				name: "text",
 				type: "input",
-				label: "Task name",
+				label: "任务名称",
 				id: "text",
 				labelPosition: "left",
 				labelWidth: 100,
@@ -19,7 +19,7 @@ function initTaskEditForm() {
 			description: {
 				name: "description",
 				type: "textarea",
-				label: "Description",
+				label: "描述",
 				id: "description",
 				labelPosition: "left",
 				labelWidth: 100,
@@ -28,7 +28,7 @@ function initTaskEditForm() {
 			start_date: {
 				name: "start_date",
 				type: "datepicker",
-				label: "Start Date",
+				label: "开始 Date",
 				id: "start_date",
 				required: true,
 				labelPosition: "left",
@@ -52,8 +52,8 @@ function initTaskEditForm() {
 			duration: {
 				name: "duration",
 				type: "input",
-				inputType: "number",
-				label: "Duration",
+				input类型: "number",
+				label: "工期",
 				id: "duration",
 				labelPosition: "left",
 				labelWidth: 100,
@@ -82,7 +82,7 @@ function initTaskEditForm() {
 				name: "progress",
 				type: "slider",
 				id: "progress",
-				label: "Progress",
+				label: "进度",
 				labelPosition: "left",
 				labelWidth: 100,
 				min: 0,
@@ -91,7 +91,7 @@ function initTaskEditForm() {
 			},
 		};
 
-		var taskFormRowsForGrid = [
+		var taskFormRowsFor表格 = [
 			taskFormRows["text"],
 			taskFormRows["description"],
 			taskFormRows["start_date"],
@@ -104,41 +104,41 @@ function initTaskEditForm() {
 		if (gantt._taskForm) gantt._taskForm.destructor();
 		gantt._taskForm = new dhx.Form(null, {
 			css: "dhx_widget--bordered",
-			rows: taskFormRowsForGrid,
+			rows: taskFormRowsFor表格,
 		});
 		gantt._tabbar.getCell("task").attach(gantt._taskForm);
 
 		gantt._taskForm.events.on("Change", function (name, new_value) {
 			var task = gantt._lightbox_task;
 
-			var updatedTask = gantt._taskForm.getValue();
+			var updated任务 = gantt._taskForm.getValue();
 
-			task.text = updatedTask.text;
-			task.description = updatedTask.description;
-			task.tags = updatedTask.tags;
-			task.progress = updatedTask.progress / 100;
+			task.text = updated任务.text;
+			task.description = updated任务.description;
+			task.tags = updated任务.tags;
+			task.progress = updated任务.progress / 100;
 
 			switch (name) {
 				case "start_date":
-					task.start_date = gantt.date.parseDate(updatedTask.start_date, taskFormRows.start_date.dateFormat);
+					task.start_date = gantt.date.parseDate(updated任务.start_date, taskFormRows.start_date.dateFormat);
 					task.end_date = gantt.calculateEndDate({ start_date: task.start_date, duration: task.duration, task: task, unit: "hour" });
 					gantt._taskForm.getItem("end_date").setValue(task.end_date);
 					break;
 
 				case "duration":
-					task.duration = updatedTask.duration;
+					task.duration = updated任务.duration;
 					task.end_date = gantt.calculateEndDate({ start_date: task.start_date, duration: task.duration, task: task, unit: "hour" });
 					gantt._taskForm.getItem("end_date").setValue(task.end_date);
 					break;
 
 				case "end_date":
-					task.end_date = gantt.date.parseDate(updatedTask.end_date, taskFormRows.end_date.dateFormat);
+					task.end_date = gantt.date.parseDate(updated任务.end_date, taskFormRows.end_date.dateFormat);
 					if (+task.end_date <= +task.start_date) {
 						task.end_date = gantt.calculateEndDate({ start_date: task.start_date, duration: 1, task: task, unit: "hour" });
 						gantt._taskForm.getItem("end_date").setValue(task.end_date);
 					}
 
-					task.duration = gantt.calculateDuration({ start_date: task.start_date, end_date: task.end_date, task: task, unit: "hour" });
+					task.duration = gantt.calculate工期({ start_date: task.start_date, end_date: task.end_date, task: task, unit: "hour" });
 					gantt._taskForm.getItem("duration").setValue(task.duration);
 					break;
 

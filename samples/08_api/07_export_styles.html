@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Export with custom styles</title>
+	<title>使用自定义样式导出</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
@@ -33,17 +33,17 @@
 	});
 
 	gantt.config.columns = [
-		{name: "text", label: "Task name", tree: true, resize: true, width: "*"},
-		{name: "start_date", label: "Start time", resize: true, align: "center"},
+		{name: "text", label: "任务名称", tree: true, resize: true, width: "*"},
+		{name: "start_date", label: "开始 time", resize: true, align: "center"},
 		{
-			name: "priority", label: "Priority", resize: true, align: "center", template: function (obj) {
+			name: "priority", label: "优先级", resize: true, align: "center", template: function (obj) {
 				if (obj.priority == 1) {
-					return "High"
+					return "高"
 				}
 				if (obj.priority == 2) {
 					return "Medium"
 				}
-				return "Low"
+				return "低"
 			}
 		}
 	];

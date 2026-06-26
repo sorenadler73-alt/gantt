@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Basic filtering</title>
+	<title>基础筛选</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<script src="../common/testdata.js"></script>
 
@@ -39,17 +39,17 @@
 
 		<label class="checked_label" id="scale1">
 			<input type="checkbox" name="1" value="1" checked/>
-			<i class="material-icons icon_color">check_box</i>High
+			<i class="material-icons icon_color">check_box</i>高
 		</label>
 
 		<label id="scale2">
 			<input type="checkbox" name="2" value="1"/>
-			<i class="material-icons">check_box_outline_blank</i>Normal
+			<i class="material-icons">check_box_outline_blank</i>普通
 		</label>
 
 		<label id="scale3">
 			<input type="checkbox" name="3" value="1"/>
-			<i class="material-icons">check_box_outline_blank</i>Low
+			<i class="material-icons">check_box_outline_blank</i>低
 		</label>
 	</div>
 </div>
@@ -70,25 +70,25 @@
 		}
 	}
 
-	function hasPriority(parent, priority) {
-		if (gantt.getTask(parent).priority == priority)
+	function has优先级(parent, priority) {
+		if (gantt.get任务(parent).priority == priority)
 			return true;
 
 		var child = gantt.getChildren(parent);
 		for (var i = 0; i < child.length; i++) {
-			if (hasPriority(child[i], priority))
+			if (has优先级(child[i], priority))
 				return true;
 		}
 		return false;
 	}
 
-	gantt.attachEvent("onBeforeTaskDisplay", function (id, task) {
+	gantt.attachEvent("onBefore任务Display", function (id, task) {
 		for (var i = 0; i < filter_inputs.length; i++) {
 			var filter_input = filter_inputs[i];
 
 
 			if (filter_input.checked) {
-				if (hasPriority(id, filter_input.name)) {
+				if (has优先级(id, filter_input.name)) {
 					return true;
 				}
 			}
@@ -98,13 +98,13 @@
 	});
 
 	gantt.config.columns = [
-		{name: "text", label: "Task name", tree: true, resize: true, align: "center", width: 160},
-		{name: "start_date", label: "Start time", resize: true, align: "center"},
+		{name: "text", label: "任务名称", tree: true, resize: true, align: "center", width: 160},
+		{name: "start_date", label: "开始 time", resize: true, align: "center"},
 		{
-			name: "priority", label: "Priority", align: "center", template: function (obj) {
-				if (obj.priority == 1) return "High";
-				if (obj.priority == 2) return "Normal";
-				return "Low";
+			name: "priority", label: "优先级", align: "center", template: function (obj) {
+				if (obj.priority == 1) return "高";
+				if (obj.priority == 2) return "普通";
+				return "低";
 			}
 		}
 	];

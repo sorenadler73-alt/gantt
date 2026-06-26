@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Import Primavera P6 file</title>
+	<title>导入 Primavera P6 文件</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 
 	<script src="../common/snippets/dhx_file_dnd.js"></script>
@@ -42,7 +42,7 @@
 <body>
 <div class="gantt_control" style="text-align: center; padding: 5px;">
 	<p>
-		You can use any XER/XML Project file or download this sample <a class="primavera-sample"
+		You can use any XER/XML 项目 file or download this sample <a class="primavera-sample"
 																		   href="../common/PROJECT.xer"
 																		   target="_blank">P6</a>
 	</p>
@@ -66,18 +66,18 @@
 	gantt.config.xml_date = "%Y-%m-%d %H:%i";
 
 	gantt.attachEvent("onParse", function () {
-		gantt.eachTask(function (task) {
+		gantt.each任务(function (task) {
 			if (gantt.hasChild(task.id)) {
 				task.type = gantt.config.types.project;
-				gantt.updateTask(task.id);
+				gantt.update任务(task.id);
 			} else if (task.duration === 0) {
 				task.type = gantt.config.types.milestone;
-				gantt.updateTask(task.id);
+				gantt.update任务(task.id);
 			}
 		});
 	});
 
-	gantt.message("Upload <b>XER</b> or <b>XML</b> Project file using 'Choose File' button or simply drag-and-drop it into the page");
+	gantt.message("Upload <b>XER</b> or <b>XML</b> 项目 file using 'Choose File' button or simply drag-and-drop it into the page");
 
 	if (!window.FormData) {
 		gantt.message({type:"error", text: "Your browsers does not support Ajax File upload, please open this demo in modern browser"});
@@ -89,8 +89,8 @@
 	gantt.init("gantt_here");
 
 	var fileDnD = fileDragAndDrop();
-	fileDnD.fileTypeMessage = "Only XER and XML files are supported!";
-	fileDnD.dndFileTypeMessage = "Please try XER and XML project file.";
+	fileDnD.file类型Message = "Only XER and XML files are supported!";
+	fileDnD.dndFile类型Message = "Please try XER and XML project file.";
 	fileDnD.dndHint = "Drop XER file into Gantt";
 	fileDnD.mode = "primaveraP6";
 	fileDnD.init(gantt.$container);

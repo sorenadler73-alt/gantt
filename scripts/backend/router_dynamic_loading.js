@@ -1,6 +1,6 @@
 var Router = require("./router");
 
-class RouterDynamicLoading extends Router {
+class RouterDynamic加载中 extends Router {
 	getData(req, res) {
 		this._tryProcess(function (req, res) {
 			var parentId = req.query.parent_id || 0;
@@ -9,4 +9,4 @@ class RouterDynamicLoading extends Router {
 	}
 }
 
-module.exports = RouterDynamicLoading;
+module.exports = RouterDynamic加载中;

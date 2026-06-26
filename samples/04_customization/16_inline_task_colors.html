@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Specify inline colors for Tasks and Links</title>
+	<title>为任务和关联指定内联颜色</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 
@@ -20,7 +20,7 @@
 	gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
 
 	gantt.locale.labels.section_priority = "Color";
-	gantt.locale.labels.section_textColor = "Text Color";
+	gantt.locale.labels.section_textColor = "文本 Color";
 
 	var colors = [
 		{key: "", label: "Default"},
@@ -43,7 +43,7 @@
 
 	gantt.init("gantt_here");
 	gantt.parse(taskData);
-	gantt.showLightbox(gantt.getTaskByTime()[0].id);
+	gantt.show任务编辑框(gantt.get任务ByTime()[0].id);
 
 </script>
 </body>

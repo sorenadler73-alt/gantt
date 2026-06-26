@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Task styles</title>
+	<title>任务样式</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 
@@ -36,17 +36,17 @@
 <script>
 	gantt.init("gantt_here");
 	gantt.config.columns = [
-		{name: "text", label: "Task name", tree: true, width: "*", resize: true},
-		{name: "start_date", label: "Start time", align: "center", resize: true},
+		{name: "text", label: "任务名称", tree: true, width: "*", resize: true},
+		{name: "start_date", label: "开始 time", align: "center", resize: true},
 		{
-			name: "priority", label: "Priority", align: "center", template: function (obj) {
+			name: "priority", label: "优先级", align: "center", template: function (obj) {
 				if (obj.priority == 1) {
-					return "High"
+					return "高"
 				}
 				if (obj.priority == 2) {
 					return "Medium"
 				}
-				return "Low"
+				return "低"
 			}
 		}
 	];

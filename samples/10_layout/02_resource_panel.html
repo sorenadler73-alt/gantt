@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Gantt chart with resource panel</title>
+	<title>带资源面板的甘特图</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 
@@ -69,7 +69,7 @@
 
 
 	var renderResourceLine = function (resource, timeline) {
-		var tasks = gantt.getTaskBy("user", resource.id);
+		var tasks = gantt.get任务By("user", resource.id);
 		var timetable = calculateResourceLoad(tasks, timeline.getScale());
 
 		var row = document.createElement("div");
@@ -89,7 +89,7 @@
 			var el = document.createElement('div');
 			el.className = css;
 
-			el.style.cssText = [
+			el.style.css文本 = [
 				'left:' + sizes.left + 'px',
 				'width:' + sizes.width + 'px',
 				'position:absolute',
@@ -109,12 +109,12 @@
 		"taskBg"
 	];
 
-	var mainGridConfig = {
+	var main表格Config = {
 		columns: [
 			{name: "text", tree: true, width: 200, resize: true},
 			{name: "start_date", align: "center", width: 9, resize: true},
 			{
-				name: "owner", align: "center", width: 60, label: "Owner", template: function (task) {
+				name: "owner", align: "center", width: 60, label: "负责人", template: function (task) {
 					var store = gantt.getDatastore("resources");
 					var owner = store.getItem(task.user);
 					if (owner) {
@@ -138,14 +138,14 @@
 			},
 			{
 				name: "workload", label: "Workload", template: function (resource) {
-					var tasks = gantt.getTaskBy("user", resource.id);
+					var tasks = gantt.get任务By("user", resource.id);
 
-					var totalDuration = 0;
+					var total工期 = 0;
 					for (var i = 0; i < tasks.length; i++) {
-						totalDuration += tasks[i].duration;
+						total工期 += tasks[i].duration;
 					}
 
-					return (totalDuration || 0) * 8 + "";
+					return (total工期 || 0) * 8 + "";
 				}
 			}
 		]
@@ -156,7 +156,7 @@
 		rows: [
 			{
 				cols: [
-					{view: "grid", group:"grids", config: mainGridConfig, scrollY: "scrollVer"},
+					{view: "grid", group:"grids", config: main表格Config, scrollY: "scrollVer"},
 					{resizer: true, width: 1, group:"vertical"},
 					{view: "timeline", id: "timeline", scrollX: "scrollHor", scrollY: "scrollVer"},
 					{view: "scrollbar", id: "scrollVer", group:"vertical"}
@@ -168,7 +168,7 @@
 				cols: [
 					{
 						view: "grid",
-						id: "resourceGrid",
+						id: "resource表格",
 						group:"grids",
 						bind: "resources",
 						scrollY: "resourceVScroll"

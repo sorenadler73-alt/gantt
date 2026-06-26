@@ -2,7 +2,7 @@
 
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Readonly lightbox</title>
+	<title>只读任务编辑框</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 	<link rel="stylesheet" href="../common/controls_styles.css">
@@ -45,7 +45,7 @@
 		var tasks = {
 			"data": [
 				{ "id": "1", "text": "Ordinary task #1", "start_date": "05-04-2025", "duration": 3, "progress": 0.4, "open": true },
-				{ "id": "2", "text": "Editable task #2", "editable": true, "start_date": "07-04-2025", "duration": 2, "progress": 0.6 },
+				{ "id": "2", "text": "编辑able task #2", "editable": true, "start_date": "07-04-2025", "duration": 2, "progress": 0.6 },
 				{ "id": "3", "text": "Readonly task #3", "readonly": true, "start_date": "04-04-2025", "duration": 2, "progress": 0.6 },
 			],
 			"links": [
@@ -65,12 +65,12 @@
 		};
 
 
-		gantt.attachEvent("onTaskDblClick", function(id,e){
-			gantt.showLightbox(id)
+		gantt.attachEvent("on任务DblClick", function(id,e){
+			gantt.show任务编辑框(id)
 			return true;
 		});
 
-		gantt.attachEvent("onLightboxSave", function(id, task, is_new){
+		gantt.attachEvent("on任务编辑框保存", function(id, task, is_new){
 			if (gantt.isReadonly(id)){
 				gantt.alert("You cannot edit this task");
 				return false;
@@ -79,7 +79,7 @@
 			return true;
 		})
 
-		gantt.attachEvent("onLightboxDelete", function(id){
+		gantt.attachEvent("on任务编辑框删除", function(id){
 				if (gantt.config.readonly || gantt.isReadonly(id)){
 						gantt.alert("You cannot delete this task");
 						return false;
@@ -93,7 +93,7 @@
 		gantt.message({
 			text: `
 				In the read-only mode, you cannot edit tasks. <br>
-				But if you use the Gantt API, you can open the lightbox and check the task properties.
+				But if you use the 甘特图 API, you can open the lightbox and check the task properties.
 			`,
 			expire: -1
 		})

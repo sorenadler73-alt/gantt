@@ -2,7 +2,7 @@
 
 <head>
 	<meta http-equiv='Content-type' content='text/html; charset=utf-8'>
-	<title>Datepicker in lightbox</title>
+	<title>任务编辑框中的日期选择器</title>
 	<script src="https://cdn.dhtmlx.com/suite/8.3/suite.js"></script>
 	<script src='../../codebase/dhtmlxgantt.js'></script>
 
@@ -54,7 +54,7 @@
 				startDateCalendar.events.on("change", function () {
 					startDateInput.value = startDateCalendar.getValue();
 					startDatePopup.hide();
-					updateDuration()
+					update工期()
 				});
 
 				const startDateInput = node.querySelector("#startDateCalendar");
@@ -62,7 +62,7 @@
 
 				startDateInput.addEventListener("click", function () {
 					startDatePopup.show(startDateInput);
-					updateDuration()
+					update工期()
 				});
 
 
@@ -75,7 +75,7 @@
 				endDateCalendar.events.on("change", function () {
 					endDateInput.value = endDateCalendar.getValue();
 					endDatePopup.hide();
-					updateDuration()
+					update工期()
 				});
 
 				const endDateInput = node.querySelector("#endDateCalendar");
@@ -83,17 +83,17 @@
 
 				endDateInput.addEventListener("click", function () {
 					endDatePopup.show(endDateInput);
-					updateDuration()
+					update工期()
 				});
 
 				startDateCalendar.link(endDateCalendar);
-				updateDuration();
+				update工期();
 
-				function updateDuration() {
+				function update工期() {
 					const startDate = strToDate(startDateCalendar.getValue());
 					const endDate = strToDate(endDateCalendar.getValue());
 
-					const duration = gantt.calculateDuration({ start_date: startDate, end_date: endDate, task });
+					const duration = gantt.calculate工期({ start_date: startDate, end_date: endDate, task });
 					const durationEl = node.querySelector("#duration");
 					let postfix = " day";
 					if (duration !== 1) {
@@ -124,8 +124,8 @@
 		gantt.init("gantt_here");
 		gantt.parse(taskData);
 
-		var first = gantt.getTaskByTime()[0];
-		gantt.showLightbox(first.id);
+		var first = gantt.get任务ByTime()[0];
+		gantt.show任务编辑框(first.id);
 
 
 		gantt.message({

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Using sorting methods</title>
+	<title>使用排序方法</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 	<link rel="stylesheet" href="../common/controls_styles.css">
@@ -10,7 +10,7 @@
 
 <body style="margin: 0">
 <div class="gantt_control">
-	<input type='button' value='Sort by priority' onclick='sortByPriority()'>
+	<input type='button' value='Sort by priority' onclick='sortBy优先级()'>
 	<input type='button' value='Sort by task name' onclick='sortByName()'>
 </div>
 <div id="gantt_here" style='width:100%; height:calc(100vh - 52px);'></div>
@@ -19,7 +19,7 @@
 	var p_direction = false;
 	var n_direction = false;
 
-	function sortByPriority() {
+	function sortBy优先级() {
 		if (p_direction) {
 			gantt.sort("priority", false);
 		} else {
@@ -38,13 +38,13 @@
 	}
 
 	gantt.config.columns = [
-		{name: "text", label: "Task name", tree: true, resize: true, align: "center", width: 160},
-		{name: "start_date", label: "Start time", resize: true, align: "center"},
+		{name: "text", label: "任务名称", tree: true, resize: true, align: "center", width: 160},
+		{name: "start_date", label: "开始 time", resize: true, align: "center"},
 		{
-			name: "priority", label: "Priority", resize: true, align: "center", template: function (obj) {
-				if (obj.priority == 1) return "High";
-				if (obj.priority == 2) return "Normal";
-				return "Low";
+			name: "priority", label: "优先级", resize: true, align: "center", template: function (obj) {
+				if (obj.priority == 1) return "高";
+				if (obj.priority == 2) return "普通";
+				return "低";
 			}
 		},
 		{ name: "add", label: "", width: 44 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Lightbox customization</title>
+	<title>任务编辑框自定义</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 
@@ -32,17 +32,17 @@
 
 
 <script>
-	gantt.locale.labels.section_priority = "Priority";
+	gantt.locale.labels.section_priority = "优先级";
 
 	gantt.serverList("priorityOptions", [
-		{key: "1", label: "High"}, 
-		{key: "2", label: "Normal"}, 
-		{key: "3", label: "Low"}
+		{key: "1", label: "高"}, 
+		{key: "2", label: "普通"}, 
+		{key: "3", label: "低"}
 	]);
 	gantt.config.columns = [
-		{name: "text", label: "Task name", resize: true, tree: true, width: '*'},
+		{name: "text", label: "任务名称", resize: true, tree: true, width: '*'},
 		{
-			name: "priority", label: "Priority", width: 90, align: "center", template: function (item) {
+			name: "priority", label: "优先级", width: 90, align: "center", template: function (item) {
 				if(item.priority){
 					var priority = gantt.serverList("priorityOptions").find(function(option){
 						return option.key == item.priority;
@@ -51,7 +51,7 @@
 						return priority.label;
 					}
 				}
-				return "Low";
+				return "低";
 			}
 		}
 	];

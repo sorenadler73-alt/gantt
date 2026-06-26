@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Custom Buttons in a Grid</title>
+	<title>表格中的自定义按钮</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -52,11 +52,11 @@
 		{unit: "day", step: 1, date: "%j, %D"},
 	];
 
-	var colHeader = '<div class="gantt_grid_head_cell gantt_grid_head_add" onclick="gantt.createTask()"></div>',
+	var colHeader = '<div class="gantt_grid_head_cell gantt_grid_head_add" onclick="gantt.create任务()"></div>',
 		colContent = function (task) {
-			return ('<i class="fa gantt_button_grid gantt_grid_edit fa-pencil" onclick="clickGridButton(' + task.id + ', \'edit\')"></i>' +
-				'<i class="fa gantt_button_grid gantt_grid_add fa-plus" onclick="clickGridButton(' + task.id + ', \'add\')"></i>' +
-				'<i class="fa gantt_button_grid gantt_grid_delete fa-times" onclick="clickGridButton(' + task.id + ', \'delete\')"></i>');
+			return ('<i class="fa gantt_button_grid gantt_grid_edit fa-pencil" onclick="click表格Button(' + task.id + ', \'edit\')"></i>' +
+				'<i class="fa gantt_button_grid gantt_grid_add fa-plus" onclick="click表格Button(' + task.id + ', \'add\')"></i>' +
+				'<i class="fa gantt_button_grid gantt_grid_delete fa-times" onclick="click表格Button(' + task.id + ', \'delete\')"></i>');
 		};
 	gantt.config.columns = [
 		{name: "text", tree: true, width: '*', resize: true},
@@ -70,13 +70,13 @@
 		}
 	];
 
-	function clickGridButton(id, action) {
+	function click表格Button(id, action) {
 		switch (action) {
 			case "edit":
-				gantt.showLightbox(id);
+				gantt.show任务编辑框(id);
 				break;
 			case "add":
-				gantt.createTask(null, id);
+				gantt.create任务(null, id);
 				break;
 			case "delete":
 				gantt.confirm({
@@ -84,7 +84,7 @@
 					text: gantt.locale.labels.confirm_deleting,
 					callback: function (res) {
 						if (res)
-							gantt.deleteTask(id);
+							gantt.delete任务(id);
 					}
 				});
 				break;

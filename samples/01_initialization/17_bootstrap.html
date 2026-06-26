@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Bootstrap layout</title>
+	<title>Bootstrap 布局</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 	
@@ -76,10 +76,10 @@
 					<div class="navbar-collapse collapse">
 						<ul class="nav navbar-nav">
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Project <span
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">项目 <span
 										class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">Project information</a></li>
+									<li><a href="#">项目 information</a></li>
 									<li><a href="#">Custom fields</a></li>
 									<li><a href="#">Change working time</a></li>
 									<li class="divider"></li>
@@ -87,11 +87,11 @@
 								</ul>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Task <span
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">任务 <span
 										class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="#">Add task</a></li>
-									<li><a href="#">Add milestone</a></li>
+									<li><a href="#">添加 task</a></li>
+									<li><a href="#">添加 milestone</a></li>
 									<li class="divider"></li>
 									<li><a href="#">Summary</a></li>
 								</ul>
@@ -150,7 +150,7 @@
 			{id:13, text:"Development", type:gantt.config.types.project, start_date:"02-04-2023", duration:"7", parent:"11", progress: 0.5, open: true},
 			{id:14, text:"Analysis", start_date:"02-04-2023", duration:"6", parent:"11", progress: 0.8, open: true},
 			{id:15, text:"Design", type:gantt.config.types.project, start_date:"02-04-2023", duration:"5", parent:"11", progress: 0.2, open: false},
-			{id:16, text:"Documentation creation", start_date:"02-04-2023", duration:"7", parent:"11", progress: 0, open: true},
+			{id:16, text:"文档 creation", start_date:"02-04-2023", duration:"7", parent:"11", progress: 0, open: true},
 			{id:17, text:"Develop System", start_date:"03-04-2023", duration:"2", parent:"13", progress: 1, open: true},
 			{id:25, text:"Beta Release", start_date:"06-04-2023",type:gantt.config.types.milestone, parent:"13", progress: 0, open: true},
 			{id:18, text:"Integrate System", start_date:"08-04-2023", duration:"2", parent:"13", progress: 0.8, open: true},
@@ -197,7 +197,7 @@
 
 	var updateInfo = function () {
 		var state = gantt.getState(),
-			tasks = gantt.getTaskByTime(state.min_date, state.max_date),
+			tasks = gantt.get任务ByTime(state.min_date, state.max_date),
 			types = gantt.config.types,
 			result = {},
 			html = "",
@@ -246,9 +246,9 @@
 	};
 
 	gantt.config.columns = [
-		{name: "text", label: "Task name", resize: true, width: "*", tree: true},
-		{name: "start_date", label: "Start time", resize: true, align: "center", width: 80},
-		{name: "duration", label: "Duration", resize: true, align: "center", width: 60},
+		{name: "text", label: "任务名称", resize: true, width: "*", tree: true},
+		{name: "start_date", label: "开始 time", resize: true, align: "center", width: 80},
+		{name: "duration", label: "工期", resize: true, align: "center", width: 60},
 		{name: "add", label: "", width: 44}
 	];
 
@@ -260,10 +260,10 @@
 		{unit: "week", step: 1, format: "Week #%W"}
 	];
 
-	gantt.attachEvent("onAfterTaskAdd", function (id, item) {
+	gantt.attachEvent("onAfter任务添加", function (id, item) {
 		updateInfo();
 	});
-	gantt.attachEvent("onAfterTaskDelete", function (id, item) {
+	gantt.attachEvent("onAfter任务删除", function (id, item) {
 		updateInfo();
 	});
 

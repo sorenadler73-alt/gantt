@@ -1,7 +1,7 @@
 {
 	"name": "dhtmlx-gantt",
 	"version": "10.0.0",
-	"description": "DHTMLX Gantt - open source JavaScript Gantt chart (Community edition)",
+	"description": "DHTMLX Gantt - 开源 JavaScript 甘特图（社区版 · 简体中文）",
 	"type": "module",
 	"main": "codebase/dhtmlxgantt.js",
 	"module": "codebase/dhtmlxgantt.es.js",
@@ -23,7 +23,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/DHTMLX/gantt.git"
+		"url": "https://github.com/sorenadler73-alt/gantt.git"
 	},
 	"author": "XB Software",
 	"license": "MIT",

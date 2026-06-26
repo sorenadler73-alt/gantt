@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Dynamically move task text to the right side</title>
+	<title>动态将任务文本移至右侧</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 
@@ -29,7 +29,7 @@
 <script>
 	gantt.setSkin("meadow");
 	gantt.message({
-		text: "Task description will be displayed aside if the width is not enough to fit it",
+		text: "任务 description will be displayed aside if the width is not enough to fit it",
 		expire: -1
 	});
 	gantt.message({
@@ -48,9 +48,9 @@
 	};
 
 	gantt.config.columns = [
-		{name: "text", label: "Task name", width: "*", resize: true, tree: true},
-		{name: "start_date", label: "Start time", resize: true, align: "center", width: 90},
-		{name: "duration", label: "Duration", resize: true, align: "center", width: 60},
+		{name: "text", label: "任务名称", width: "*", resize: true, tree: true},
+		{name: "start_date", label: "开始 time", resize: true, align: "center", width: 90},
+		{name: "duration", label: "工期", resize: true, align: "center", width: 60},
 		{name: "add", label: "", width: 44}
 	];
 
@@ -69,30 +69,30 @@
 
 	(function () {
 		gantt.config.font_width_ratio = 7;
-		gantt.templates.leftside_text = function leftSideTextTemplate(start, end, task) {
-			if (getTaskFitValue(task) === "left") {
+		gantt.templates.leftside_text = function leftSide文本Template(start, end, task) {
+			if (get任务FitValue(task) === "left") {
 				return task.text;
 			}
 			return "";
 		};
-		gantt.templates.rightside_text = function rightSideTextTemplate(start, end, task) {
-			if (getTaskFitValue(task) === "right") {
+		gantt.templates.rightside_text = function rightSide文本Template(start, end, task) {
+			if (get任务FitValue(task) === "right") {
 				return task.text;
 			}
 			return "";
 		};
-		gantt.templates.task_text = function taskTextTemplate(start, end, task) {
-			if (getTaskFitValue(task) === "center") {
+		gantt.templates.task_text = function task文本Template(start, end, task) {
+			if (get任务FitValue(task) === "center") {
 				return task.text;
 			}
 			return "";
 		};
 
-		function getTaskFitValue(task) {
-			var taskStartPos = gantt.posFromDate(task.start_date),
+		function get任务FitValue(task) {
+			var task开始Pos = gantt.posFromDate(task.start_date),
 				taskEndPos = gantt.posFromDate(task.end_date);
 
-			var width = taskEndPos - taskStartPos;
+			var width = taskEndPos - task开始Pos;
 			var textWidth = (task.text || "").length * gantt.config.font_width_ratio;
 
 			if (width < textWidth) {
@@ -136,7 +136,7 @@
 			{id: 21, text: "Design database", start_date: "03-04-2023 00:00", duration: 4, parent: "15", progress: 0.5, open: true, end_date: "07-04-2023 00:00"},
 			{id: 22, text: "Software design", start_date: "03-04-2023 00:00", duration: 4, parent: "15", progress: 0.1, open: true, end_date: "07-04-2023 00:00"},
 			{id: 23, text: "Interface setup", start_date: "03-04-2023 00:00", duration: 5, parent: "15", progress: 0, open: true, end_date: "08-04-2023 00:00"},
-			{id: 16, text: "Documentation creation", start_date: "05-04-2023 00:00", duration: 1, parent: "11", progress: 0, open: true, end_date: "06-04-2023 00:00"},
+			{id: 16, text: "文档 creation", start_date: "05-04-2023 00:00", duration: 1, parent: "11", progress: 0, open: true, end_date: "06-04-2023 00:00"},
 			{id: 24, text: "Release v1.0", start_date: "20-04-2023 00:00", type: "milestone", parent: "11", progress: 0, open: true, end_date: "20-04-2023 00:00", duration: 0}
 		],
 		links: [

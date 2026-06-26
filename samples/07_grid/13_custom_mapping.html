@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Inline editing - Custom keyboard mapping</title>
+	<title>行内编辑 - 自定义键盘映射</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 	<script src="../common/testdata.js"></script>
@@ -21,34 +21,34 @@
 <div id="gantt_here" style='width:100%; height:100%;'></div>
 <script>
 
-	var textEditor = {type: "text", map_to: "text"};
-	var dateEditor = {type: "date", map_to: "start_date", min: new Date(2023, 0, 1), max: new Date(2024, 0, 1)};
-	var durationEditor = {type: "number", map_to: "duration", min:0, max: 100};
+	var text编辑or = {type: "text", map_to: "text"};
+	var date编辑or = {type: "date", map_to: "start_date", min: new Date(2023, 0, 1), max: new Date(2024, 0, 1)};
+	var duration编辑or = {type: "number", map_to: "duration", min:0, max: 100};
 
 	gantt.config.columns = [
-		{name: "text", tree: true, width: '*', resize: true, editor: textEditor},
-		{name: "start_date", align: "center", resize: true, editor: dateEditor},
-		{name: "duration", align: "center", editor: durationEditor},
+		{name: "text", tree: true, width: '*', resize: true, editor: text编辑or},
+		{name: "start_date", align: "center", resize: true, editor: date编辑or},
+		{name: "duration", align: "center", editor: duration编辑or},
 		{name: "add", width: 44}
 	];
 
 	var mapping = {
-		init: function(inlineEditors){
-			gantt.attachEvent("onTaskDblClick", function (id, e) {
-				var cell = inlineEditors.locateCell(e.target);
-				if (cell && inlineEditors.getEditorConfig(cell.columnName)) {
-					inlineEditors.startEdit(cell.id, cell.columnName);
+		init: function(inline编辑ors){
+			gantt.attachEvent("on任务DblClick", function (id, e) {
+				var cell = inline编辑ors.locateCell(e.target);
+				if (cell && inline编辑ors.get编辑orConfig(cell.columnName)) {
+					inline编辑ors.start编辑(cell.id, cell.columnName);
 					return false;
 				}
 				return true;
 			});
 			gantt.attachEvent("onEmptyClick", function () {
-				inlineEditors.hide();
+				inline编辑ors.hide();
 				return true;
 			});
 		},
 
-		onShow: function(inlineEditors, node){
+		onShow: function(inline编辑ors, node){
 
 			node.onkeydown = function (e) {
 				e = e || window.event;
@@ -61,16 +61,16 @@
 				var shouldPrevent = true;
 				switch (e.keyCode) {
 					case gantt.keys.edit_save:
-						inlineEditors.save();
+						inline编辑ors.save();
 						break;
 					case gantt.keys.edit_cancel:
-						inlineEditors.hide();
+						inline编辑ors.hide();
 						break;
 					case keyboard.TAB:
 						if(e.shiftKey){
-							inlineEditors.editPrevCell(true);
+							inline编辑ors.editPrevCell(true);
 						}else{
-							inlineEditors.editNextCell(true);
+							inline编辑ors.editNextCell(true);
 						}
 						break;
 					default:
@@ -84,10 +84,10 @@
 			};
 		},
 
-		onHide: function(inlineEditors, node){}
+		onHide: function(inline编辑ors, node){}
 	};
 
-	gantt.ext.inlineEditors.setMapping(mapping);
+	gantt.ext.inline编辑ors.setMapping(mapping);
 
 	gantt.init("gantt_here");
 	gantt.parse(demo_tasks);

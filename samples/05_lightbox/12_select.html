@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Select control</title>
+	<title>下拉选择控件</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 	<script src="../common/testdata.js"></script>
@@ -20,32 +20,32 @@
 	gantt.config.grid_width = 380;
 	gantt.config.add_column = false;
 	gantt.config.columns = [
-		{name: "text", label: "Task name", resize: true, tree: true, width: '*'},
-		{name: "start_date", label: "Start time", resize: true, align: "center"},
-		{name: "duration", label: "Duration", resize: true, align: "center"},
+		{name: "text", label: "任务名称", resize: true, tree: true, width: '*'},
+		{name: "start_date", label: "开始 time", resize: true, align: "center"},
+		{name: "duration", label: "工期", resize: true, align: "center"},
 		{
-			name: "priority", label: "Priority", width: 80, align: "center",
+			name: "priority", label: "优先级", width: 80, align: "center",
 			template: function (item) {
 				if (item.priority == 1)
-					return "High";
+					return "高";
 				if (item.priority == 2)
-					return "Normal";
+					return "普通";
 				if (item.priority == 3)
-					return "Low";
+					return "低";
 				return "Undefined";
 			}
 		}
 	];
-	gantt.locale.labels.section_priority = "Priority";
+	gantt.locale.labels.section_priority = "优先级";
 
 	gantt.config.lightbox.sections = [
 		{name: "description", height: 38, map_to: "text", type: "textarea", focus: true},
 		{
 			name: "priority", map_to: "priority", type: "select",
 			options: [
-				{key: 1, label: "High"},
-				{key: 2, label: "Normal"},
-				{key: 3, label: "Low"}
+				{key: 1, label: "高"},
+				{key: 2, label: "普通"},
+				{key: 3, label: "低"}
 			]
 		},
 		{name: "time", type: "duration", map_to: "auto"}
@@ -53,6 +53,6 @@
 
 	gantt.init("gantt_here");
 	gantt.parse(users_data);
-	gantt.showLightbox(1);
+	gantt.show任务编辑框(1);
 </script>
 </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Template control</title>
+	<title>模板控件</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 	<script src="../common/testdata.js"></script>
@@ -29,21 +29,21 @@
 <div id="gantt_here" style='height:100vh;'></div>
 
 <script>
-	gantt.locale.labels.section_template = "Details";
+	gantt.locale.labels.section_template = "详情";
 	gantt.config.lightbox.sections = [
 		{name: "description", height: 38, map_to: "text", type: "textarea", focus: true},
 		{name: "template", type: "template", map_to: "my_template"},
 		{name: "time", type: "duration", map_to: "auto"}
 	];
 
-	gantt.attachEvent("onBeforeLightbox", function (id) {
-		var task = gantt.getTask(id);
-		task.my_template = "<span id='title1'>Holders: </span>" + task.users + "<span id='title2'>Progress: </span>" + task.progress * 100 + " %";
+	gantt.attachEvent("onBefore任务编辑框", function (id) {
+		var task = gantt.get任务(id);
+		task.my_template = "<span id='title1'>Holders: </span>" + task.users + "<span id='title2'>进度: </span>" + task.progress * 100 + " %";
 		return true;
 	});
 
 	gantt.init("gantt_here");
 	gantt.parse(users_data);
-	gantt.showLightbox(1);
+	gantt.show任务编辑框(1);
 </script>
 </body>

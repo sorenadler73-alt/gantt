@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Load data from JSON file</title>
+	<title>从 JSON 文件加载数据</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<script src="../common/webserver_warning.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
@@ -20,7 +20,7 @@
 		gantt.attachEvent("onAjaxError", function(request){
 			if (!request.status || !request.response){
 				gantt.message({
-					text: webserverWarningText,
+					text: webserverWarning文本,
 					expire: -1
 				})
 			}

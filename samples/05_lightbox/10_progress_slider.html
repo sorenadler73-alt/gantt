@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv='Content-type' content='text/html; charset=utf-8'>
-	<title>Slider control in lightbox</title>
+	<title>任务编辑框中的滑块控件</title>
 	<script src="https://cdn.dhtmlx.com/suite/8.3/suite.js"></script>
 	<script src='../../codebase/dhtmlxgantt.js'></script>
 
@@ -56,16 +56,16 @@
 			node._slider = slider;
 
 			slider.events.on("Change", function (newValue, oldValue, isRange) {
-				updateProgressLabel(newValue)
+				update进度Label(newValue)
 			});
 
-			updateProgressLabel(task.progress * 100)
+			update进度Label(task.progress * 100)
 
-			function updateProgressLabel(newValue) {
+			function update进度Label(newValue) {
 				document.querySelector("#slider_label").innerHTML = parseInt(newValue) + "%"
 			}
 
-			const id = gantt.attachEvent("onAfterLightbox", function () {
+			const id = gantt.attachEvent("onAfter任务编辑框", function () {
 				node._slider.destructor();
 				node._slider = null;
 				this.detachEvent(id);
@@ -84,14 +84,14 @@
 		{name: "time", type: "duration", map_to: "auto"}
 	];
 
-	gantt.locale.labels.section_progress = "Progress";
+	gantt.locale.labels.section_progress = "进度";
 
 	gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
 	gantt.init("gantt_here");
 	gantt.parse(taskData);
 
-	var first = gantt.getTaskByTime()[0];
-	gantt.showLightbox(first.id);
+	var first = gantt.get任务ByTime()[0];
+	gantt.show任务编辑框(first.id);
 
 	gantt.message({
 	    text:"This example uses DHTMLX Suite's Slider which can be used under GPLv2 license or has to be obtained separately. <br><br> You can do this or use a third-party slider widget instead.",

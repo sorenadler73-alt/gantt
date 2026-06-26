@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Progress lightbox</title>
+	<title>进度任务编辑框</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 	<script src="../common/testdata.js"></script>
@@ -22,9 +22,9 @@
 	gantt.config.grid_width = 380;
 	gantt.config.add_column = false;
 	gantt.config.columns = [
-		{name: "text", label: "Task name", resize: true, tree: true, width: '*'},
+		{name: "text", label: "任务名称", resize: true, tree: true, width: '*'},
 		{
-			name: "progress", label: "Progress", resize: true, width: 80, align: "center",
+			name: "progress", label: "进度", resize: true, width: 80, align: "center",
 			template: function (item) {
 				if (item.progress >= 1)
 					return "Complete";
@@ -41,7 +41,7 @@
 			}
 		}
 	];
-	gantt.locale.labels["section_progress"] = "Progress";
+	gantt.locale.labels["section_progress"] = "进度";
 
 	gantt.config.lightbox.sections = [
 		{name: "description", height: 38, map_to: "text", type: "textarea", focus: true},
@@ -65,6 +65,6 @@
 
 	gantt.init("gantt_here");
 	gantt.parse(users_data);
-	gantt.showLightbox(2);
+	gantt.show任务编辑框(2);
 </script>
 </body>

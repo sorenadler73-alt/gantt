@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Custom control in the lightbox</title>
+	<title>任务编辑框中的自定义控件</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 	<script src="../common/testdata.js"></script>
@@ -20,7 +20,7 @@
 	gantt.form_blocks["my_editor"] = {
 		render: function (sns) {
 			return "<div class='dhx_cal_ltext' style='height:60px;'>"+
-				"Text&nbsp;<input class='editor_description' type='text'><br/>Holders&nbsp;<input class='editor_holders' type='text' placeholder='John'>"+
+				"文本&nbsp;<input class='editor_description' type='text'><br/>Holders&nbsp;<input class='editor_holders' type='text' placeholder='John'>"+
 				"</div>";
 		},
 		set_value: function (node, value, task) {
@@ -45,6 +45,6 @@
 	gantt.init("gantt_here");
 
 	gantt.parse(users_data);
-	gantt.showLightbox(1);
+	gantt.show任务编辑框(1);
 </script>
 </body>

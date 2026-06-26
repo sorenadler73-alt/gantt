@@ -168,6 +168,6 @@ export default function(supportedExtensions) {
 		},
 		getLocale: i18n.getLocale
 	};
-	gantt.i18n.setLocale("en");
+	gantt.i18n.setLocale("cn");
 	return gantt;
 };

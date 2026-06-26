@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Custom button in the lightbox</title>
+	<title>任务编辑框中的自定义按钮</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 
@@ -64,16 +64,16 @@
 	gantt.init("gantt_here");
 	gantt.parse(users_data);
 
-	gantt.attachEvent("onLightboxButton", function (button_id, node, e) {
+	gantt.attachEvent("on任务编辑框Button", function (button_id, node, e) {
 		if (button_id == "complete_button") {
 			var id = gantt.getState().lightbox;
-			gantt.getTask(id).progress = 1;
-			gantt.updateTask(id)
-			gantt.hideLightbox();
+			gantt.get任务(id).progress = 1;
+			gantt.update任务(id)
+			gantt.hide任务编辑框();
 		}
 	});
-	gantt.attachEvent("onBeforeLightbox", function (id) {
-		var task = gantt.getTask(id);
+	gantt.attachEvent("onBefore任务编辑框", function (id) {
+		var task = gantt.get任务(id);
 		if (task.progress == 1) {
 			gantt.message({text: "The task is already completed!", type: "completed"});
 			return false;

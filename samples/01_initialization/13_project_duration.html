@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Project duration</title>
+	<title>项目工期</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 	<style>
@@ -35,19 +35,19 @@
 
 	gantt.parse({
 		data: [
-			{id: 11, text: "Project #1", progress: 0.6, open: true},
-			{id:12, text:"Task #1", start_date:"03-04-2023", duration:"5", parent:11, progress: 1, open: true},
-			{id:13, text:"Task #2", parent:11, progress: 0.5, open: true},
-			{id:14, text:"Task #3", start_date:"02-04-2023", duration:"6", parent:11, progress: 0.8, open: true},
-			{id:15, text:"Task #4", parent:11, progress: 0.2, open: true},
-			{id:16, text:"Task #5", start_date:"02-04-2023", duration:"7", parent:11, progress: 0, open: true},
-			{id:17, text:"Task #2.1", start_date:"03-04-2023", duration:"2", parent:13, progress: 1, open: true},
-			{id:18, text:"Task #2.2", start_date:"06-04-2023", duration:"3", parent:13, progress: 0.8, open: true},
-			{id:19, text:"Task #2.3", start_date:"10-04-2023", duration:"4", parent:13, progress: 0.2, open: true},
-			{id:20, text:"Task #2.4", start_date:"10-04-2023", duration:"4", parent:13, progress: 0, open: true},
-			{id:21, text:"Task #4.1", start_date:"03-04-2023", duration:"4", parent:15, progress: 0.5, open: true},
-			{id:22, text:"Task #4.2", start_date:"03-04-2023", duration:"4", parent:15, progress: 0.1, open: true},
-			{id:23, text:"Task #4.3", start_date:"03-04-2023", duration:"5", parent:15, progress: 0, open: true}
+			{id: 11, text: "项目 #1", progress: 0.6, open: true},
+			{id:12, text:"任务 #1", start_date:"03-04-2023", duration:"5", parent:11, progress: 1, open: true},
+			{id:13, text:"任务 #2", parent:11, progress: 0.5, open: true},
+			{id:14, text:"任务 #3", start_date:"02-04-2023", duration:"6", parent:11, progress: 0.8, open: true},
+			{id:15, text:"任务 #4", parent:11, progress: 0.2, open: true},
+			{id:16, text:"任务 #5", start_date:"02-04-2023", duration:"7", parent:11, progress: 0, open: true},
+			{id:17, text:"任务 #2.1", start_date:"03-04-2023", duration:"2", parent:13, progress: 1, open: true},
+			{id:18, text:"任务 #2.2", start_date:"06-04-2023", duration:"3", parent:13, progress: 0.8, open: true},
+			{id:19, text:"任务 #2.3", start_date:"10-04-2023", duration:"4", parent:13, progress: 0.2, open: true},
+			{id:20, text:"任务 #2.4", start_date:"10-04-2023", duration:"4", parent:13, progress: 0, open: true},
+			{id:21, text:"任务 #4.1", start_date:"03-04-2023", duration:"4", parent:15, progress: 0.5, open: true},
+			{id:22, text:"任务 #4.2", start_date:"03-04-2023", duration:"4", parent:15, progress: 0.1, open: true},
+			{id:23, text:"任务 #4.3", start_date:"03-04-2023", duration:"5", parent:15, progress: 0, open: true}
 		],
 		links:[
 			{id:"10",source:"11",target:"12",type:"1"},
@@ -65,6 +65,6 @@
 		]
 	});
 
-	gantt.message("Tasks with the 'project' type ignore their own date values ('start_date', 'end_date', and 'duration') and calculate them from child tasks.");
+	gantt.message("任务s with the 'project' type ignore their own date values ('start_date', 'end_date', and 'duration') and calculate them from child tasks.");
 </script>
 </body>

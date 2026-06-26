@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Backend storage using REST API</title>
+	<title>使用 REST API 的后端存储</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 	<style>
@@ -25,10 +25,10 @@
 		expire: -1
 	});
 
-	gantt.attachEvent("onBeforeTaskAdd", function(id,task){
+	gantt.attachEvent("onBefore任务添加", function(id,task){
 		//do not allow incorrect dates
-		task.start_date = task.start_date || gantt.getTaskByIndex(0).start_date || new Date();
-		task.end_date = task.end_date || gantt.getTaskByIndex(0).end_date || new Date();
+		task.start_date = task.start_date || gantt.get任务ByIndex(0).start_date || new Date();
+		task.end_date = task.end_date || gantt.get任务ByIndex(0).end_date || new Date();
 		return true;
 	});
 

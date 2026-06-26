@@ -23,15 +23,15 @@ class Router {
 		res.send(this.storage.all());
 	}
 
-	insertTask(req, res) {
+	insert任务(req, res) {
 		this._tryProcess(function (req, res) {
-			var insertedTask = this.storage.insert("data", req.body);
-			res.send({action: actions.inserted, tid: insertedTask.id});
+			var inserted任务 = this.storage.insert("data", req.body);
+			res.send({action: actions.inserted, tid: inserted任务.id});
 		}, req, res);
 
 	}
 
-	updateTask(req, res) {
+	update任务(req, res) {
 		this._tryProcess(function (req, res) {
 			var sid = req.params.id;
 
@@ -40,7 +40,7 @@ class Router {
 		}, req, res)
 	}
 
-	deleteTask(req, res) {
+	delete任务(req, res) {
 		this._tryProcess(function (req, res) {
 			var sid = req.params.id;
 			this.storage.delete(sid, "data");
@@ -81,9 +81,9 @@ class Router {
 
 	_connect(app, prefix){
 		app.get(`${prefix}${this.root}`, this.getData.bind(this));
-		app.post(`${prefix}${this.root}/task`, this.insertTask.bind(this));
-		app.put(`${prefix}${this.root}/task/:id`, this.updateTask.bind(this));
-		app.delete(`${prefix}${this.root}/task/:id`, this.deleteTask.bind(this));
+		app.post(`${prefix}${this.root}/task`, this.insert任务.bind(this));
+		app.put(`${prefix}${this.root}/task/:id`, this.update任务.bind(this));
+		app.delete(`${prefix}${this.root}/task/:id`, this.delete任务.bind(this));
 		app.post(`${prefix}${this.root}/link`, this.insertLink.bind(this));
 		app.put(`${prefix}${this.root}/link/:id`, this.updateLink.bind(this));
 		app.delete(`${prefix}${this.root}/link/:id`, this.deleteLink.bind(this));

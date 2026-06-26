@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Task Name Search Filter</title>
+	<title>任务名称搜索筛选</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
@@ -25,7 +25,7 @@
 <body>
 <div class="gantt_control">
 	<div class="filters_wrapper" id="filters_wrapper">
-		<label>Search Tasks:</label>
+		<label>Search 任务s:</label>
 		<input id='filter' class="gantt_input_styled" type='text' placeholder="Enter task name to filter"/>
 	</div>
 </div>
@@ -53,7 +53,7 @@
 			{ "id": 11, "text": "UI", "start_date": "16-05-2025", "duration": 1, "parent": 9, "progress": 0 },
 			{ "id": 12, "text": "Feedback", "start_date": "20-05-2025", "duration": 1, "parent": 9, "progress": 0 },
 			{ "id": 13, "text": "RC", "start_date": "22-05-2025", "duration": 1, "progress": 0 },
-			{ "id": 14, "text": "Final milestone", "start_date": "24-05-2025", "duration": 0, "progress": 0.25, "type": 'milestone' }
+			{ "id": 14, "text": "最终里程碑", "start_date": "24-05-2025", "duration": 0, "progress": 0.25, "type": 'milestone' }
 		]
 	});
 
@@ -69,20 +69,20 @@
 	function filterLogic(task, match) {
 		match = match || false;
 		// check children
-		gantt.eachTask(function (child) {
+		gantt.each任务(function (child) {
 			if (filterLogic(child)) {
 				match = true;
 			}
 		}, task.id);
 
 		// check task
-		if (task.text.toLowerCase().indexOf(filterValue.toLowerCase()) > -1) {
+		if (task.text.to低erCase().indexOf(filterValue.to低erCase()) > -1) {
 			match = true;
 		}
 		return match;
 	}
 
-	gantt.attachEvent("onBeforeTaskDisplay", function (id, task) {
+	gantt.attachEvent("onBefore任务Display", function (id, task) {
 		if (!filterValue) {
 			return true;
 		}

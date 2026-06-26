@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Custom sorting function</title>
+	<title>自定义排序函数</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
 	<link rel="stylesheet" href="../common/controls_styles.css">
@@ -34,9 +34,9 @@
 	}
 
 	gantt.config.columns = [
-		{name: "text", label: "Task name", tree: true, resize: true, width: 160},
-    { name: "start_date", label: "Start time", resize: true, width: 100 },
-    { name: "duration", label: "Duration", resize: true, width: 50 },
+		{name: "text", label: "任务名称", tree: true, resize: true, width: 160},
+    { name: "start_date", label: "开始 time", resize: true, width: 100 },
+    { name: "duration", label: "工期", resize: true, width: 50 },
     {
 				name: "users", label: "Users", width: 120, resize: true, align: "center", template: function (task) {
 					if (task.users && Array.isArray(task.users)){

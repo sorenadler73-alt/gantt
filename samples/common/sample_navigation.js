@@ -3,11 +3,11 @@ function showSourceCode(folder, file) {
 	source_code.innerHTML = `<textarea id="source_code_text" disabled="true">${atob(sampleSource[folder][file])}"</textarea>`;
 }
 
-function addCodeHighlight() {
+function addCode高light() {
 	const codeMirror = document.querySelector(".CodeMirror");
 	if (codeMirror) codeMirror.parentNode.removeChild(codeMirror);
 
-	const editor = CodeMirror.fromTextArea(document.querySelector("textarea"), {
+	const editor = CodeMirror.from文本Area(document.querySelector("textarea"), {
 		mode: "htmlmixed",
 		styleActiveLine: true,
 		lineNumbers: true,
@@ -40,7 +40,7 @@ function addApiReference(folder, file) {
 	<path id="Vector" d="M3.205 9.5L2.5 8.795L7.795 3.5L4.5 3.5L4.5 2.5L9.5 2.5L9.5 7.5L8.5 7.5L8.5 4.205L3.205 9.5Z" fill="#0288D1" fill-opacity="0.7"/>
 	</g>
 	</svg>`;
-	function appendAdditionalFiles(line, type) {
+	function append添加itional文件(line, type) {
 		if (line.indexOf("dhtmlxgantt") > -1) {
 			return;
 		}
@@ -57,7 +57,7 @@ function addApiReference(folder, file) {
 			let filename = null;
 			if (leftUrlPart.indexOf("googleapis") > -1) {
 				rightUrlPart = leftUrlPart.split('"')[0];
-				filename = "Google API file";
+				filename = "Google API 文件";
 			} else {
 				rightUrlPart = leftUrlPart.split(type)[0] + type;
 				let fileNameIndex = rightUrlPart.lastIndexOf("/");
@@ -96,15 +96,15 @@ function addApiReference(folder, file) {
 			suggestionsSection.appendChild(suggestionsElement);
 		}
 		if (line.indexOf("<script") > -1) {
-			appendAdditionalFiles(line, "js");
+			append添加itional文件(line, "js");
 		}
 		if (line.indexOf("<link") > -1) {
-			appendAdditionalFiles(line, "css");
+			append添加itional文件(line, "css");
 		}
 
-		let indexStart = line.indexOf("gantt.");
-		if (indexStart > -1) {
-			let leftCut = line.slice(indexStart);
+		let index开始 = line.indexOf("gantt.");
+		if (index开始 > -1) {
+			let leftCut = line.slice(index开始);
 			let middleIndex = leftCut.indexOf(".");
 			let middleCut = leftCut.slice(middleIndex + 1);
 			// second occurence
@@ -162,7 +162,7 @@ function addApiReference(folder, file) {
 				if (extValue == "zoom") {
 					postfix = "";
 				}
-				if (extValue == "inlineEditors") {
+				if (extValue == "inline编辑ors") {
 					extValue = "inline_editors";
 				}
 
@@ -185,7 +185,7 @@ function addApiReference(folder, file) {
 				}
 
 				const eventElement = document.createElement("div");
-				eventElement.innerHTML = `<div class='api-link'><a href = https://docs.dhtmlx.com/gantt/api__gantt_${eventValue.toLowerCase()}_event.html target='_blank'>${eventValue} ${svg}</a></div>`;
+				eventElement.innerHTML = `<div class='api-link'><a href = https://docs.dhtmlx.com/gantt/api__gantt_${eventValue.to低erCase()}_event.html target='_blank'>${eventValue} ${svg}</a></div>`;
 
 				if (
 					checkDuplicateNodes(eventsSection, eventElement.innerHTML)
@@ -225,7 +225,7 @@ function addApiReference(folder, file) {
 				middleCut.indexOf("i18n.") > -1
 			) {
 				const localizationElement = document.createElement("div");
-				localizationElement.innerHTML = `<div class='api-link'><a href = https://docs.dhtmlx.com/gantt/desktop__localization.html target='_blank'>Localization ${svg}</a></div>`;
+				localizationElement.innerHTML = `<div class='api-link'><a href = https://docs.dhtmlx.com/gantt/desktop__localization.html target='_blank'>本地化 ${svg}</a></div>`;
 
 				if (
 					checkDuplicateNodes(
@@ -269,7 +269,7 @@ function addApiReference(folder, file) {
 				}
 
 				let methodElement = document.createElement("div");
-				methodElement.innerHTML = `<div class='api-link'><a href = https://docs.dhtmlx.com/gantt/api__gantt_${methodValue.toLowerCase()}.html target='_blank'>${methodValue} ${svg}</a></div>`;
+				methodElement.innerHTML = `<div class='api-link'><a href = https://docs.dhtmlx.com/gantt/api__gantt_${methodValue.to低erCase()}.html target='_blank'>${methodValue} ${svg}</a></div>`;
 				if (methodValue == "ignore_time") {
 					methodElement.innerHTML = `<div class='api-link'><a href = https://docs.dhtmlx.com/gantt/desktop__custom_scale.html target='_blank'>${methodValue} ${svg}</a></div>`;
 				}
@@ -310,7 +310,7 @@ function checkDuplicateNodes(el, content) {
 
 // Do not generate links for custom properties
 function isCustomProperty(value) {
-	let customProperties = [
+	let custom属性 = [
 		"gantt.config.add_column",
 		"gantt.config.font_width_ratio",
 		"gantt.config.show_drag_vertical",
@@ -324,7 +324,7 @@ function isCustomProperty(value) {
 		"gantt.$container",
 		"gantt.performAction",
 	];
-	if (customProperties.indexOf(value) > -1) {
+	if (custom属性.indexOf(value) > -1) {
 		return true;
 	} else {
 		return false;
@@ -334,17 +334,17 @@ function isCustomProperty(value) {
 window.addEventListener("click", function (e) {
 	if (e.target.classList.contains("link")) {
 		e.preventDefault();
-		let firstLaunch = false;
-		let previousHighlights = document.querySelectorAll(
+		let first上线 = false;
+		let previous高lights = document.querySelectorAll(
 			"[data-highlighted='true']"
 		);
-		if (previousHighlights[0]) {
-			for (let i = 0; i < previousHighlights.length; i++) {
-				previousHighlights[i].dataset.highlighted = false;
-				previousHighlights[i].classList.remove("active");
+		if (previous高lights[0]) {
+			for (let i = 0; i < previous高lights.length; i++) {
+				previous高lights[i].dataset.highlighted = false;
+				previous高lights[i].classList.remove("active");
 			}
 		} else {
-			firstLaunch = true;
+			first上线 = true;
 			document.querySelector(".demo").childNodes[1].addEventListener('load', function(e){
 				if (document.querySelector(".loading")){
 					document.querySelector(".loading").remove();
@@ -382,7 +382,7 @@ window.addEventListener("click", function (e) {
 			filter = document.querySelector(".search-field").value,
 			link =
 				currentUrl + "?sample='" + sample + "'&filter='" + filter + "'";
-		window.history.replaceState("", "Gantt samples", link);
+		window.history.replaceState("", "甘特图示例", link);
 
 		demoFrame.src = "";
 		try {
@@ -406,11 +406,11 @@ window.addEventListener("click", function (e) {
 			addCover();
 		}, 200);
 
-		if (!firstLaunch) {
+		if (!first上线) {
 			document
 				.getElementById("nav-dropdown-list")
 				.classList.remove("opened");
-			document.getElementById("nav-dropdown-chosen").innerText = "Demo";
+			document.getElementById("nav-dropdown-chosen").inner文本 = "演示";
 		}
 	}
 
@@ -421,7 +421,7 @@ window.addEventListener("click", function (e) {
 		e.target.classList.contains("share");
 
 	if (!share_click) {
-		removeShareDialog();
+		remove分享Dialog();
 	}
 });
 
@@ -467,7 +467,7 @@ function toggle_demo(type) {
 	}
 
 	if (type == "code") {
-		addCodeHighlight();
+		addCode高light();
 	}
 }
 
@@ -515,7 +515,7 @@ function filterSamples(value) {
 		let file = files[i];
 		if (
 			value &&
-			file.innerHTML.toLowerCase().indexOf(value.toLowerCase()) < 0
+			file.innerHTML.to低erCase().indexOf(value.to低erCase()) < 0
 		) {
 			file.style.display = "none";
 		} else {
@@ -533,7 +533,7 @@ function filterSamples(value) {
 	for (let i = 0; i < labels.length; i++) {
 		if (
 			value &&
-			labels[i].innerHTML.toLowerCase().indexOf(value.toLowerCase()) < 0
+			labels[i].innerHTML.to低erCase().indexOf(value.to低erCase()) < 0
 		) {
 			labels[i].classList.add("hidden");
 		} else {
@@ -632,7 +632,7 @@ function loadSampleFromParams() {
 }
 
 function shareSample() {
-	removeShareDialog();
+	remove分享Dialog();
 
 	const currentUrl =
 			window.location.protocol +
@@ -650,10 +650,10 @@ function shareSample() {
 	const shareElementInside = document.createElement("div");
 	shareElementInside.className = "share_dialog-field";
 
-	const shareText = document.createElement("div");
-	shareText.className = "share_text";
+	const share文本 = document.createElement("div");
+	share文本.className = "share_text";
 
-	shareElement.appendChild(shareText);
+	shareElement.appendChild(share文本);
 
 	const shareLink = document.createElement("input");
 	shareLink.className = "share_link";
@@ -666,7 +666,7 @@ function shareSample() {
 	shareButton.value = "Copy link";
 
 	shareButton.onclick = function () {
-		navigator.clipboard.writeText(shareLink.value);
+		navigator.clipboard.write文本(shareLink.value);
 		shareButton.value = "Copied!";
 	};
 
@@ -675,7 +675,7 @@ function shareSample() {
 	document.body.appendChild(shareElement);
 }
 
-function removeShareDialog() {
+function remove分享Dialog() {
 	const shareElement = document.querySelector(".share_dialog");
 
 	if (shareElement) {
@@ -691,7 +691,7 @@ function navDropdown() {
 
 function toggle_dropdown(e) {
 	navDropdown();
-	document.getElementById("nav-dropdown-chosen").innerText = e.target.innerText;
+	document.getElementById("nav-dropdown-chosen").inner文本 = e.target.inner文本;
 }
 
 function addHref() {
