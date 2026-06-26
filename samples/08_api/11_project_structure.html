@@ -33,7 +33,7 @@
 
 <script>
 	gantt.message({
-		text: "Predefined project structure with three levels of items<br>1 - <b>项目s</b><br>2 - <b>Subprojects</b><br>3 - <b>任务s</b><br>任务s can't have child items",
+		text: "Predefined project structure with three levels of items<br>1 - <b>Projects</b><br>2 - <b>Subprojects</b><br>3 - <b>Tasks</b><br>Tasks can't have child items",
 		expire: -1
 	});
 
@@ -60,20 +60,20 @@
 
 		switch (task.type) {
 			case types.project:
-				text = "项目";
+				text = "Project";
 				break;
 			case types.subproject:
 				text = 'Subproject';
 				break;
 			default:
-				text = '任务';
+				text = 'Task';
 				break;
 		}
 		task.text = text + " #" + index;
 		return;
 	}
 
-	gantt.attachEvent("on任务Created", function (task) {
+	gantt.attachEvent("onTaskCreated", function (task) {
 		var parent = task.parent,
 			types = gantt.config.types,
 			level = 0;
@@ -81,7 +81,7 @@
 		if (parent == gantt.config.root_id || !parent) {
 			level = 0;
 		} else {
-			level = gantt.get任务(task.parent).$level + 1;
+			level = gantt.getTask(task.parent).$level + 1;
 		}
 //assign task type based on task level
 		switch (level) {

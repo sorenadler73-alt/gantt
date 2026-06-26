@@ -20,7 +20,7 @@
 	gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
 
 	gantt.locale.labels.section_priority = "Color";
-	gantt.locale.labels.section_textColor = "文本 Color";
+	gantt.locale.labels.section_textColor = "Text Color";
 
 	var colors = [
 		{key: "", label: "Default"},
@@ -43,7 +43,7 @@
 
 	gantt.init("gantt_here");
 	gantt.parse(taskData);
-	gantt.show任务编辑框(gantt.get任务ByTime()[0].id);
+	gantt.showLightbox(gantt.getTaskByTime()[0].id);
 
 </script>
 </body>

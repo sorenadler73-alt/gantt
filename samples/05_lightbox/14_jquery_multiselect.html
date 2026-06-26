@@ -136,7 +136,7 @@
 	gantt.config.columns = [
 		{name: "text", tree: true, width: 200, resize: true},
 		{name: "start_date", align: "center", width: 100, resize: true},
-		{name: "owner", align: "center", width: 85, label: "负责人", template: function (task) {
+		{name: "owner", align: "center", width: 85, label: "Owner", template: function (task) {
 			if (task.type == gantt.config.types.project) {
 				return "";
 			}
@@ -169,7 +169,7 @@
 	];
 
 	
-	gantt.locale.labels.section_owner = "负责人";
+	gantt.locale.labels.section_owner = "Owner";
 	gantt.config.lightbox.sections = [
 		{name: "description", height: 38, map_to: "text", type: "textarea", focus: true},
 		{name:"owner",height:60, type:"multiselect", options:gantt.serverList("people"), map_to:"owners"},
@@ -197,7 +197,7 @@
 			{ id: 13, text: "Development", type: "project", start_date: "03-04-2022 00:00", duration: 11, parent: "11", progress: 0.5, owners: []},
 			{ id: 14, text: "Analysis", type: "task", start_date: "03-04-2022 00:00", duration: 6, parent: "11", progress: 0.8, owners: []},
 			{ id: 15, text: "Design", type: "project", start_date: "03-04-2022 00:00", duration: 5, parent: "11", progress: 0.2, owners: []},
-			{ id: 16, text: "文档 creation", type: "task", start_date: "03-04-2022 00:00", duration: 7, parent: "11", progress: 0,owners: ["7"], priority:1},
+			{ id: 16, text: "Documentation creation", type: "task", start_date: "03-04-2022 00:00", duration: 7, parent: "11", progress: 0,owners: ["7"], priority:1},
 			{ id: 17, text: "Develop System", type: "task", start_date: "03-04-2022 00:00", duration: 2, parent: "13", progress: 1,owners: ["8"], priority:2},
 			{ id: 25, text: "Beta Release", type: "milestone", start_date: "06-04-2022 00:00", parent: "13", progress: 0,owners: [], duration: 0},
 			{ id: 18, text: "Integrate System", type: "task", start_date: "10-04-2022 00:00", duration: 2, parent: "13", progress: 0.8,owners: ["6"], priority:3},
@@ -224,6 +224,6 @@
 		]
 		});
 
-	gantt.show任务编辑框(8);
+	gantt.showLightbox(8);
 </script>
 </body>

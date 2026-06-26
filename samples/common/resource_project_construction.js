@@ -382,7 +382,7 @@ var taskData = {
         "id": "539",
         "start_date": "2024-11-21 00:00:00",
         "duration": 0,
-        "text": "项目 submission",
+        "text": "Project submission",
         "progress": "0",
         "type": "milestone",
         "parent": "512",

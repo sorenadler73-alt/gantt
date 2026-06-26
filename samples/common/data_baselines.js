@@ -25,13 +25,13 @@ var taskData = {
       id: 5,
       start_date: "2025-04-05 00:00:00",
       duration: 3,
-      text: "任务 #1.1",
+      text: "Task #1.1",
       progress: 0.34,
       parent: 2,
       open: true,
       end_date: "2025-04-08 00:00:00"
     },
-    { id: 6, start_date: "2025-04-09 00:00:00", duration: 4, text: "任务 #1.2", progress: 0.5, parent: 2, open: true, end_date: "2025-04-13 00:00:00" },
+    { id: 6, start_date: "2025-04-09 00:00:00", duration: 4, text: "Task #1.2", progress: 0.5, parent: 2, open: true, end_date: "2025-04-13 00:00:00" },
     {
       id: 3,
       start_date: "2025-04-06 00:00:00",
@@ -151,14 +151,14 @@ var taskData = {
       id: 24,
       start_date: "2025-04-13 00:00:00",
       duration: 0,
-      text: "任务 #4.3",
+      text: "Task #4.3",
       progress: 0,
       parent: 16,
       open: true,
       type: "milestone",
       end_date: "2025-04-13 00:00:00"
     },
-    { id: 17, start_date: "2025-04-16 00:00:00", duration: 2, text: "任务 #5", progress: 0.5, parent: 12, open: true, end_date: "2025-04-18 00:00:00" },
+    { id: 17, start_date: "2025-04-16 00:00:00", duration: 2, text: "Task #5", progress: 0.5, parent: 12, open: true, end_date: "2025-04-18 00:00:00" },
   ],
   links: [],
   baselines: [

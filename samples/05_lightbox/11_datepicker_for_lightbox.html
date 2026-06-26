@@ -54,7 +54,7 @@
 				startDateCalendar.events.on("change", function () {
 					startDateInput.value = startDateCalendar.getValue();
 					startDatePopup.hide();
-					update工期()
+					updateDuration()
 				});
 
 				const startDateInput = node.querySelector("#startDateCalendar");
@@ -62,7 +62,7 @@
 
 				startDateInput.addEventListener("click", function () {
 					startDatePopup.show(startDateInput);
-					update工期()
+					updateDuration()
 				});
 
 
@@ -75,7 +75,7 @@
 				endDateCalendar.events.on("change", function () {
 					endDateInput.value = endDateCalendar.getValue();
 					endDatePopup.hide();
-					update工期()
+					updateDuration()
 				});
 
 				const endDateInput = node.querySelector("#endDateCalendar");
@@ -83,17 +83,17 @@
 
 				endDateInput.addEventListener("click", function () {
 					endDatePopup.show(endDateInput);
-					update工期()
+					updateDuration()
 				});
 
 				startDateCalendar.link(endDateCalendar);
-				update工期();
+				updateDuration();
 
-				function update工期() {
+				function updateDuration() {
 					const startDate = strToDate(startDateCalendar.getValue());
 					const endDate = strToDate(endDateCalendar.getValue());
 
-					const duration = gantt.calculate工期({ start_date: startDate, end_date: endDate, task });
+					const duration = gantt.calculateDuration({ start_date: startDate, end_date: endDate, task });
 					const durationEl = node.querySelector("#duration");
 					let postfix = " day";
 					if (duration !== 1) {
@@ -124,8 +124,8 @@
 		gantt.init("gantt_here");
 		gantt.parse(taskData);
 
-		var first = gantt.get任务ByTime()[0];
-		gantt.show任务编辑框(first.id);
+		var first = gantt.getTaskByTime()[0];
+		gantt.showLightbox(first.id);
 
 
 		gantt.message({

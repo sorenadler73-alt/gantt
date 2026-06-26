@@ -9,14 +9,14 @@ function fileDragAndDrop(){
 		}
 	}
 
-	var show高light = false,
+	var showHighlight = false,
 		timeout = 0;
 
 	return {
 		root: null,
 		listeners: {},
-		file类型Message: "Only MPP and XML files are supported!",
-		dndFile类型Message: "Please try XML or MPP project file.",
+		fileTypeMessage: "Only MPP and XML files are supported!",
+		dndFileTypeMessage: "Please try XML or MPP project file.",
 		dndHint: "Drop MPP or XML file into Gantt",
 		onDrop: function(listener){
 			var id = uid++;
@@ -29,27 +29,27 @@ function fileDragAndDrop(){
 
 		mode:"msp",
 
-		isExcelMime类型: function(fileTransferItem){
+		isExcelMimeType: function(fileTransferItem){
 			if(!fileTransferItem) return false;
 
-			var excel类型s = {
+			var excelTypes = {
 				"application/vnd.ms-excel":true,
 				"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":true
 			};
 
-			return excel类型s[fileTransferItem.type];
+			return excelTypes[fileTransferItem.type];
 		},
 		isExcelFile: function(file){
 			var ext = file.name.split(".").pop();
-			var excel扩展 = {
+			var excelExtensions = {
 				"xls": true,
 				"xlsx": true
 			};
 
-			return !!(excel扩展[ext]);
+			return !!(excelExtensions[ext]);
 		},
 
-		isPrimaveraP6Mime类型: function(fileTransferItem){
+		isPrimaveraP6MimeType: function(fileTransferItem){
 			if(!fileTransferItem) return false;
 
 			var types = {
@@ -69,10 +69,10 @@ function fileDragAndDrop(){
 			return !!(extensions[ext]);
 		},
 
-		isMs项目Mime类型: function(fileTransferItem){
+		isMsProjectMimeType: function(fileTransferItem){
 			if(!fileTransferItem) return false;
 
-			var ms类型s = {
+			var msTypes = {
 				"text/xml":true,
 				"application/xml":true,
 				"application/vnd.ms-project": true,
@@ -85,17 +85,17 @@ function fileDragAndDrop(){
 				"zz-application/zz-winassoc-mpp": true
 			};
 
-			return ms类型s[fileTransferItem.type];
+			return msTypes[fileTransferItem.type];
 		},
 
-		isMs项目File: function(file){
+		isMsProjectFile: function(file){
 			var ext = file.name.split(".").pop();
-			var msProj扩展 = {
+			var msProjExtensions = {
 				"mpp": true,
 				"xml": true
 			};
 
-			return !!(msProj扩展[ext]);
+			return !!(msProjExtensions[ext]);
 		},
 
 		init: function(div){
@@ -104,50 +104,50 @@ function fileDragAndDrop(){
 
 			div.addEventListener("dragover", gantt.bind(function(event){
 				event.preventDefault && event.preventDefault();
-				show高light = true;
+				showHighlight = true;
 				this.showHover(event);
 			}, this), false);
 
 			div.addEventListener("dragenter", gantt.bind(function(event){
 				event.preventDefault && event.preventDefault();
-				show高light = true;
+				showHighlight = true;
 				this.showHover(event);
 			}, this), false);
 
 			div.addEventListener("dragleave", gantt.bind(function(event){
-				show高light = false;
+				showHighlight = false;
 				clearTimeout( timeout );
 				timeout = setTimeout( gantt.bind(function(){
-					if( !show高light ){ this.hideOverlay(); }
+					if( !showHighlight ){ this.hideOverlay(); }
 				}, this), 200 );
 			}, this), false);
 
 			div.addEventListener("dragend", gantt.bind(function(event){
 				this.hideOverlay();
-				show高light = false;
+				showHighlight = false;
 			}, this), false);
 
 			div.addEventListener("drop", gantt.bind(function(event){
 				event.preventDefault && event.preventDefault();
-				show高light = false;
+				showHighlight = false;
 				this.hideOverlay();
 
 				var files = event.dataTransfer.files;
 
 				var file = files[0];
 
-				var checkFile类型 = this.isMs项目File;
+				var checkFileType = this.isMsProjectFile;
 
 				if(this.mode == "excel"){
-					checkFile类型 = this.isExcelFile;
+					checkFileType = this.isExcelFile;
 				}else if(this.mode == "primaveraP6"){
-					checkFile类型 = this.isPrimaveraP6File;
+					checkFileType = this.isPrimaveraP6File;
 				}
 
-				if(checkFile类型.call(this, file)){
+				if(checkFileType.call(this, file)){
 					callListeners.call(this, file);
 				}else{
-					gantt.message("The extension of <b>" +file.name+ "</b> " + this.file类型Message);
+					gantt.message("The extension of <b>" +file.name+ "</b> " + this.fileTypeMessage);
 				}
 
 				return false;
@@ -163,17 +163,17 @@ function fileDragAndDrop(){
 		showHover: function showFileHover(event){
 			if(event.dataTransfer && event.dataTransfer.items && event.dataTransfer.items[0]){
 
-				var checkMime类型 = this.isMs项目Mime类型;
+				var checkMimeType = this.isMsProjectMimeType;
 
 				if(this.mode == "excel"){
-					checkMime类型 = this.isExcelMime类型;
+					checkMimeType = this.isExcelMimeType;
 				}else if(this.mode == "primaveraP6"){
-					checkMime类型 = this.isMs项目Mime类型;
+					checkMimeType = this.isMsProjectMimeType;
 				}
 
-				if(!checkMime类型.call(this, event.dataTransfer.items[0])){
+				if(!checkMimeType.call(this, event.dataTransfer.items[0])){
 					this.showOverlay('<div class="gantt-file-hover-content-upload-image"></div>' +
-						'<div class="gantt-file-hover-content-upload-message">'+this.dndFile类型Message+'</div>', true);
+						'<div class="gantt-file-hover-content-upload-message">'+this.dndFileTypeMessage+'</div>', true);
 				}else{
 					this.showOverlay('<div class="gantt-file-hover-content-upload-image"></div>' +
 						'<div class="gantt-file-hover-content-upload-message">'+this.dndHint+'</div>');
@@ -181,9 +181,9 @@ function fileDragAndDrop(){
 			}
 		},
 
-		showUpload: function showFileIn进度(){
+		showUpload: function showFileInProgress(){
 			this.showOverlay('<div class="gantt-file-upload-spinner"><div class="gantt-file-upload-spinner-inner"></div></div>' +
-				'<div class="gantt-file-hover-content-upload-message">加载中&hellip;</div>');
+				'<div class="gantt-file-hover-content-upload-message">Loading&hellip;</div>');
 		},
 
 		showOverlay: function showOverlay(innerHTML, invalid){

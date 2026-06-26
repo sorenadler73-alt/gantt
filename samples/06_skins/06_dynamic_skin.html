@@ -200,22 +200,22 @@
 						},
 						{
 							type: "colorpicker",
-							label: "任务 Background Color",
+							label: "Task Background Color",
 							name: "--dhx-gantt-task-background"
 						},
 						{
 							type: "colorpicker",
-							label: "项目 Background Color",
+							label: "Project Background Color",
 							name: "--dhx-gantt-project-background"
 						},
 						{
 							type: "colorpicker",
-							label: "里程碑 Background Color",
+							label: "Milestone Background Color",
 							name: "--dhx-gantt-milestone-background"
 						},
 						{
 							type: "colorpicker",
-							label: "任务 文本 Color",
+							label: "Task Text Color",
 							name: "--dhx-gantt-task-color"
 						},
 						{
@@ -230,12 +230,12 @@
 						},
 						{
 							type: "colorpicker",
-							label: "文本 Color",
+							label: "Text Color",
 							name: "--dhx-gantt-container-color"
 						},
 						{
 							type: "colorpicker",
-							label: "Header 文本 Color",
+							label: "Header Text Color",
 							name: "--dhx-gantt-scale-color"
 						},
 
@@ -257,7 +257,7 @@
 						{
 							name: "save_skin",
 							type: "button",
-							text: "保存 skin",
+							text: "Save skin",
 							size: "medium",
 							view: "flat",
 							color: "primary"
@@ -293,7 +293,7 @@
 				const code = `<pre><code>${styles}</code></pre>`
 				const styleModal = gantt.modalbox({
 					css: "save_modal",
-					title: "添加 these styles to your project",
+					title: "Add these styles to your project",
 					text: code,
 					buttons: ["Close", "Download CSS", "Copy"],
 					callback: function (button) {
@@ -330,9 +330,9 @@
 			ignoreChange = true;
 			applyFormValues(null);
 			form.forEach((input) => {
-				const allowed类型 = ["fieldset", "button"].indexOf(input.config.type) === -1;
+				const allowedType = ["fieldset", "button"].indexOf(input.config.type) === -1;
 				const allowedName = ["theme", "locale"].indexOf(input.config.name) === -1;
-				if (allowed类型 && allowedName) {
+				if (allowedType && allowedName) {
 					input.clear();
 				}
 			});

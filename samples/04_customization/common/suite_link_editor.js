@@ -1,60 +1,60 @@
-function initLink编辑Form() {
+function initLinkEditForm() {
 	gantt.$lightboxControl.links.addForm = function () {
 
 		this.deleteLink = function (id) {
 			gantt._removed_links.push(id);
-			gantt._link编辑or.data.remove(id);
-			this.update任务编辑框LinkData();
+			gantt._linkEditor.data.remove(id);
+			this.updateLightboxLinkData();
 		};
 
 		this.removeAllLinks = function () {
-			var links = gantt._link编辑or.data._order;
+			var links = gantt._linkEditor.data._order;
 			for (var i = 0; i < links.length; i++) {
 				gantt._removed_links.push(links[i].id);
-				gantt._link编辑or.data.remove(links[i].id);
+				gantt._linkEditor.data.remove(links[i].id);
 			}
-			this.update任务编辑框LinkData();
+			this.updateLightboxLinkData();
 		};
 
 		this.addNewLink = function () {
-			gantt._link编辑or.data.add([{
+			gantt._linkEditor.data.add([{
 				id: +new Date() + "",
 				target: "",
 				source: gantt._lightbox_id,
 				type: 0,
 				task: "",
-				link_type: "Finish to 开始",
+				link_type: "Finish to Start",
 				direction: "Predecessor",
 				lag: 0
 			}]);
-			this.update任务编辑框LinkData();
+			this.updateLightboxLinkData();
 		}
 
-		this.update任务编辑框LinkData = function () {
-			gantt._lightbox_links = gantt._link编辑or.data._order;
+		this.updateLightboxLinkData = function () {
+			gantt._lightbox_links = gantt._linkEditor.data._order;
 		}
 
 
 
 		var linkColumns = [
-			{ width: 50, id: "add_link", header: [{ text: "<input class='dhx_button dhx_button--size_small' type=button value='+' title='添加 a new link' data-onclick='addNewLink'>" }], sortable: false, htmlEnable: true, editable: false },
+			{ width: 50, id: "add_link", header: [{ text: "<input class='dhx_button dhx_button--size_small' type=button value='+' title='Add a new link' data-onclick='addNewLink'>" }], sortable: false, htmlEnable: true, editable: false },
 			{
-				minWidth: 150, id: "task", header: [{ text: "task" }], editor类型: "select", options: [], htmlEnable: true, template: function (text, row, col) {
+				minWidth: 150, id: "task", header: [{ text: "task" }], editorType: "select", options: [], htmlEnable: true, template: function (text, row, col) {
 					return col.optionLabels[text];
 				}
 			},
-			{ width: 120, id: "direction", header: [{ text: "direction" }], editor类型: "select", htmlEnable: true, options: ["Predecessor", "Successor",] },
-			{ width: 120, id: "link_type", header: [{ text: "类型" }], editor类型: "select", htmlEnable: true, options: ["Finish to 开始", "开始 to 开始", "Finish to Finish", "开始 to Finish"] },
-			{ width: 80, id: "lag", header: [{ text: "Lag" }], editor类型: "input", type: "number" },
+			{ width: 120, id: "direction", header: [{ text: "direction" }], editorType: "select", htmlEnable: true, options: ["Predecessor", "Successor",] },
+			{ width: 120, id: "link_type", header: [{ text: "Type" }], editorType: "select", htmlEnable: true, options: ["Finish to Start", "Start to Start", "Finish to Finish", "Start to Finish"] },
+			{ width: 80, id: "lag", header: [{ text: "Lag" }], editorType: "input", type: "number" },
 			{
-				width: 50, id: "remove_link", header: [{ text: "<input type=button class='dhx_button dhx_button--size_small' value='✖' title='删除 all links' data-onclick='removeAllLinks'>" }], sortable: false, htmlEnable: true, editable: false, template: function (text, row, col) {
-					return "<input class='dhx_button dhx_button--size_small' type=button value='✖' title='删除 this link' data-onclick='deleteLink' data-onclick_argument='" + row.id + "'>";
+				width: 50, id: "remove_link", header: [{ text: "<input type=button class='dhx_button dhx_button--size_small' value='✖' title='Delete all links' data-onclick='removeAllLinks'>" }], sortable: false, htmlEnable: true, editable: false, template: function (text, row, col) {
+					return "<input class='dhx_button dhx_button--size_small' type=button value='✖' title='Delete this link' data-onclick='deleteLink' data-onclick_argument='" + row.id + "'>";
 				}
 			},
 		]
 
-		if (gantt._link编辑or) {
-			gantt._link编辑or.destructor();
+		if (gantt._linkEditor) {
+			gantt._linkEditor.destructor();
 		}
 
 		if (gantt._lightbox_links == "load") {
@@ -65,7 +65,7 @@ function initLink编辑Form() {
 
 			predecessors.forEach(function (linkId) {
 				var link = gantt.getLink(linkId);
-				if (!gantt.is任务Exists(link.source)) return;
+				if (!gantt.isTaskExists(link.source)) return;
 
 				link.task = link.source;
 				link.link_type = linkColumns[3].options[link.type];
@@ -78,7 +78,7 @@ function initLink编辑Form() {
 
 			successors.forEach(function (linkId) {
 				var link = gantt.getLink(linkId);
-				if (!gantt.is任务Exists(link.target)) return;
+				if (!gantt.isTaskExists(link.target)) return;
 
 				link.task = link.target;
 				link.link_type = linkColumns[3].options[link.type];
@@ -92,7 +92,7 @@ function initLink编辑Form() {
 
 		linkColumns[1].options = [];
 		linkColumns[1].optionLabels = {};
-		var tasks = gantt.get任务ByTime()
+		var tasks = gantt.getTaskByTime()
 		tasks.forEach(function (task) {
 			if (task.id != gantt.getState().lightbox) {
 				linkColumns[1].options.push(task.id);
@@ -100,7 +100,7 @@ function initLink编辑Form() {
 			}
 		})
 
-		gantt._link编辑or = new dhx.表格(null, {
+		gantt._linkEditor = new dhx.Grid(null, {
 			columns: linkColumns,
 			autoHeight: true,
 			autoWidth: true,
@@ -108,13 +108,13 @@ function initLink编辑Form() {
 			data: gantt._lightbox_links
 		});
 
-		gantt._link编辑or.events.on("CellClick", function (row, column, e) {
+		gantt._linkEditor.events.on("CellClick", function (row, column, e) {
 			if (column.editable !== false) {
-				gantt._link编辑or.editCell(row.id, column.id);
+				gantt._linkEditor.editCell(row.id, column.id);
 			}
 		});
 
-		gantt._link编辑or.events.on("After编辑开始", function (row, col, editor类型) {
+		gantt._linkEditor.events.on("AfterEditStart", function (row, col, editorType) {
 			if (col.id == "lag") {
 				dhx.awaitRedraw().then(function () {
 					var element = document.querySelector(".dhx_cell-editor");
@@ -136,7 +136,7 @@ function initLink编辑Form() {
 
 		});
 
-		gantt._link编辑or.events.on("Before编辑End", function (value, row, column) {
+		gantt._linkEditor.events.on("BeforeEditEnd", function (value, row, column) {
 			var id = row.id
 			for (var i = 0; i < gantt._lightbox_links.length; i++) {
 				var link = gantt._lightbox_links[i];
@@ -145,14 +145,14 @@ function initLink编辑Form() {
 				}
 
 				if (column.id == "task") {
-					var selected任务Id = value;
+					var selectedTaskId = value;
 					if (link.direction == "Predecessor") {
-						link.source = selected任务Id;
+						link.source = selectedTaskId;
 						link.target = gantt._lightbox_id;
 					}
 					else {
 						link.source = gantt._lightbox_id;
-						link.target = selected任务Id;
+						link.target = selectedTaskId;
 					}
 
 				}
@@ -166,7 +166,7 @@ function initLink编辑Form() {
 				}
 			}
 		});
-		gantt._tabbar.getCell("links").attach(gantt._link编辑or);
+		gantt._tabbar.getCell("links").attach(gantt._linkEditor);
 	};
 
 }

@@ -186,7 +186,7 @@
         },
         {
             "id": 13,
-            "text": "任务 #4.3",
+            "text": "Task #4.3",
             "start_date": "2023-04-03 00:00",
             "duration": 5,
             "parent": "5",
@@ -200,7 +200,7 @@
         },
         {
             "id": 6,
-            "text": "任务 #5",
+            "text": "Task #5",
             "start_date": "2023-04-02 00:00",
             "duration": 7,
             "parent": "1",

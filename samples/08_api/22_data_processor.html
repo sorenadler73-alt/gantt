@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head lang="zh-CN">
+<head lang="en">
     <meta charset="UTF-8">
     <title>自定义数据 API - 使用本地存储</title>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
@@ -16,14 +16,14 @@
 		{name: "description", height: 38, map_to: "text", type: "textarea", focus: true},
 		{
 			name: "priority", height: 22, map_to: "priority", type: "select", options: [
-				{key: 1, label: "高"},
-				{key: 2, label: "普通"},
-				{key: 3, label: "低"}
+				{key: 1, label: "High"},
+				{key: 2, label: "Normal"},
+				{key: 3, label: "Low"}
 			]
 		},
 		{name: "time", type: "duration", map_to: "auto"}
 	];
-	gantt.locale.labels.section_priority = "优先级";
+	gantt.locale.labels.section_priority = "Priority";
 
 	gantt.config.date_format="%Y-%m-%d %H:%i";
 

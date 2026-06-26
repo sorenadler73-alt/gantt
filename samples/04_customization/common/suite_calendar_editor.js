@@ -1,26 +1,26 @@
-function initCalendar编辑Form() {
+function initCalendarEditForm() {
 	gantt.$lightboxControl.calendars.addForm = function () {
 
 		this.deleteCalendarDate = function (id) {
-			var item = gantt._calendar编辑or.data.getItem(id);
+			var item = gantt._calendarEditor.data.getItem(id);
 			var removeDate = item.date;
 			var parsedDate = gantt.date.str_to_date("%Y-%m-%d")(removeDate);
 
 			var calendar = gantt.getCalendar(gantt._activeCalendar);
 			calendar.unsetWorkTime({ date: parsedDate, hours: "08:00-17:00" });
-			gantt.refresh任务(gantt._lightbox_id);
+			gantt.refreshTask(gantt._lightbox_id);
 
-			gantt._calendar编辑or.data.remove(id);
+			gantt._calendarEditor.data.remove(id);
 		};
 
 		this.deleteAllCalendarDates = function (id) {
-			var dates = gantt._calendar编辑or.data._order;
+			var dates = gantt._calendarEditor.data._order;
 			for (var i = 0; i < dates.length; i++) {
 				if (dates[i].date) {
 					var parsedDate = gantt.date.str_to_date("%Y-%m-%d")(dates[i].date);
 					var calendar = gantt.getCalendar(gantt._activeCalendar);
 					calendar.unsetWorkTime({ date: parsedDate });
-					gantt._calendar编辑or.data.remove(dates[i].id);
+					gantt._calendarEditor.data.remove(dates[i].id);
 				}
 			}
 		};
@@ -28,26 +28,26 @@ function initCalendar编辑Form() {
 		this.addCalendarDate = function () {
 			var min_date = gantt.getState().min_date
 			var parsedDate = gantt.date.date_to_str("%Y-%m-%d")(min_date)
-			gantt._calendar编辑or.data.add([{
+			gantt._calendarEditor.data.add([{
 				date: parsedDate,
 				hours: "08:00-17:00"
 			}]);
 			gantt.getCalendar(gantt._activeCalendar).setWorkTime({ date: new Date(min_date), hours: ["08:00-17:00"] })
 		};
 		this.copyCalendarDate = function (id) {
-			gantt._calendar编辑or.data.copy(id, -1);
+			gantt._calendarEditor.data.copy(id, -1);
 		};
 
 		this.resetCalendarDay = function (id) {
-			var item = gantt._calendar编辑or.data.getItem(id);
+			var item = gantt._calendarEditor.data.getItem(id);
 			var removeDay = item.day;
 
 			var calendar = gantt.getCalendar(gantt._activeCalendar);
 			calendar.setWorkTime({ day: removeDay, hours: ["00:00-24:00"] });
-			gantt.refresh任务(gantt._lightbox_id);
+			gantt.refreshTask(gantt._lightbox_id);
 
 			item.hours = "00:00-24:00";
-			gantt._calendar编辑or.paint();
+			gantt._calendarEditor.paint();
 		};
 
 		this.changeCalendar = function (value) {
@@ -69,8 +69,8 @@ function initCalendar编辑Form() {
 			var dropdown = parent.querySelector("select");
 
 			var renamer = document.createElement("div");
-			renamer.innerHTML = "<input type=button value='✔' title='保存 new calendar name' data-onclick='updateCalendarName' class='dhx_button'> " +
-				"<input type=button value='✖' title='取消' data-onclick='addForm'  class='dhx_button'>" +
+			renamer.innerHTML = "<input type=button value='✔' title='Save new calendar name' data-onclick='updateCalendarName' class='dhx_button'> " +
+				"<input type=button value='✖' title='Cancel' data-onclick='addForm'  class='dhx_button'>" +
 				"New Name: " +
 				"<input class='new_calendar_name' value=" + gantt._activeCalendar + ">";
 			parent.replaceChild(renamer, dropdown);
@@ -84,7 +84,7 @@ function initCalendar编辑Form() {
 			newCalendar.id = name;
 			gantt.addCalendar(newCalendar);
 
-			gantt.each任务(function (task) {
+			gantt.eachTask(function (task) {
 				if (task.calendar_id == gantt._activeCalendar) {
 					task.calendar_id = name;
 				}
@@ -160,7 +160,7 @@ function initCalendar编辑Form() {
 
 		var calendarColumns = [
 			{
-				width: 60, id: "add", header: [{ text: "<input type=button value='✚' title='添加 a new date'  data-onclick='addCalendarDate' class='dhx_button dhx_button--size_small'>" }], sortable: false, htmlEnable: true, editable: false, template: function (text, row, col) {
+				width: 60, id: "add", header: [{ text: "<input type=button value='✚' title='Add a new date'  data-onclick='addCalendarDate' class='dhx_button dhx_button--size_small'>" }], sortable: false, htmlEnable: true, editable: false, template: function (text, row, col) {
 					if (!row.day) return "<input type=button value='⇊' title='Clone this date with the hour settings' data-onclick='copyCalendarDate' data-onclick_argument='" + row.id + "' class='dhx_button dhx_button--size_small'>";
 				}
 			},
@@ -171,7 +171,7 @@ function initCalendar编辑Form() {
 				}
 			},
 			{
-				minWidth: 200, id: "hours", header: [{ text: "hours" }], editor类型: "input", type: "time", template: function (text, row, col) {
+				minWidth: 200, id: "hours", header: [{ text: "hours" }], editorType: "input", type: "time", template: function (text, row, col) {
 					if (text.join) {
 						return text.join();
 					}
@@ -189,10 +189,10 @@ function initCalendar编辑Form() {
 		];
 
 
-		if (gantt._calendar布局) {
-			gantt._calendar布局.destructor();
+		if (gantt._calendarLayout) {
+			gantt._calendarLayout.destructor();
 		}
-		gantt._calendar布局 = new dhx.布局(null, {
+		gantt._calendarLayout = new dhx.Layout(null, {
 			rows: [
 				{
 					id: "header1",
@@ -206,21 +206,21 @@ function initCalendar编辑Form() {
 				},
 				{
 					id: "header2",
-					html: "<b>编辑 calendar:</b>",
+					html: "<b>Edit calendar:</b>",
 					minHeight: "20px"
 				},
 				{
-					id: "calendarDates编辑or",
-					html: "<div id='calendarDates编辑or'></div>"
+					id: "calendarDatesEditor",
+					html: "<div id='calendarDatesEditor'></div>"
 				}
 			]
 		});
 
-		gantt._tabbar.getCell("calendars").attach(gantt._calendar布局);
+		gantt._tabbar.getCell("calendars").attach(gantt._calendarLayout);
 
 
-		if (gantt._calendar编辑or) {
-			gantt._calendar编辑or.destructor();
+		if (gantt._calendarEditor) {
+			gantt._calendarEditor.destructor();
 		}
 
 		this.getCalendars();
@@ -239,25 +239,25 @@ function initCalendar编辑Form() {
 			}
 		}
 
-		gantt._calendar编辑or = new dhx.表格(null, {
+		gantt._calendarEditor = new dhx.Grid(null, {
 			columns: calendarColumns,
 			autoHeight: true,
 			autoWidth: true,
 			editable: true,
 			data: currentCalendar.settings
 		});
-		gantt._calendar布局.getCell("calendarDates编辑or").attach(gantt._calendar编辑or);
+		gantt._calendarLayout.getCell("calendarDatesEditor").attach(gantt._calendarEditor);
 
-		gantt._calendar编辑or.events.on("CellClick", function (row, column, e) {
+		gantt._calendarEditor.events.on("CellClick", function (row, column, e) {
 			if (column.editable !== false && !row.day) {
-				gantt._calendar编辑or.editCell(row.id, column.id);
+				gantt._calendarEditor.editCell(row.id, column.id);
 			}
 		});
 
-		gantt._calendar编辑or.events.on("Before编辑End", function (value, row, column) {
+		gantt._calendarEditor.events.on("BeforeEditEnd", function (value, row, column) {
 			var calendar = gantt.getCalendar(gantt._activeCalendar);
 
-			var previous = gantt.copy(gantt._calendar编辑or.data.getItem(row.id));
+			var previous = gantt.copy(gantt._calendarEditor.data.getItem(row.id));
 			if (column.id == "hours") {
 				var new_value = false;
 				if ((value.indexOf(",") > -1)) {
@@ -277,7 +277,7 @@ function initCalendar编辑Form() {
 
 			}
 			else if (column.id == "date") {
-				var addedDates = gantt._calendar编辑or.data._order;
+				var addedDates = gantt._calendarEditor.data._order;
 				var duplicates = 0;
 				for (var i = 0; i < addedDates.length; i++) {
 					if (previous.date == addedDates[i].date) {
@@ -305,7 +305,7 @@ function initCalendar编辑Form() {
 			}
 			gantt._lightbox_task.end_date = gantt.calculateEndDate(gantt._lightbox_task);
 
-			gantt.refresh任务(gantt._lightbox_id);
+			gantt.refreshTask(gantt._lightbox_id);
 		});
 
 
@@ -322,11 +322,11 @@ function initCalendar编辑Form() {
 			}
 
 
-			calendarSelector.innerHTML = "<input type=button value='✚' title='添加 a new Calendar' data-onclick='addCalendar' class='dhx_button dhx_button--size_medium'> " +
+			calendarSelector.innerHTML = "<input type=button value='✚' title='Add a new Calendar' data-onclick='addCalendar' class='dhx_button dhx_button--size_medium'> " +
 				"<input type=button value='⇊' title='Clone this calendar' data-onclick='cloneCalendar' class='dhx_button dhx_button--size_medium'> " +
 				"<input type=button value='✎' title='Rename this calendar' data-onclick='renameCalendar' class='dhx_button dhx_button--size_medium'> " +
 				"<select class='dhx_cell-editor__select calendarChanger'>" + calendar_names.join() + "</select> " +
-				"<input type=button value='✖' title='删除 this calendar' data-onclick='deleteCalendar' class='dhx_button dhx_button--size_medium'> "
+				"<input type=button value='✖' title='Delete this calendar' data-onclick='deleteCalendar' class='dhx_button dhx_button--size_medium'> "
 
 			var calendarChanger = document.querySelector(".calendarChanger");
 			if (calendarChanger) {

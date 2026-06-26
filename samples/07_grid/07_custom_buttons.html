@@ -52,11 +52,11 @@
 		{unit: "day", step: 1, date: "%j, %D"},
 	];
 
-	var colHeader = '<div class="gantt_grid_head_cell gantt_grid_head_add" onclick="gantt.create任务()"></div>',
+	var colHeader = '<div class="gantt_grid_head_cell gantt_grid_head_add" onclick="gantt.createTask()"></div>',
 		colContent = function (task) {
-			return ('<i class="fa gantt_button_grid gantt_grid_edit fa-pencil" onclick="click表格Button(' + task.id + ', \'edit\')"></i>' +
-				'<i class="fa gantt_button_grid gantt_grid_add fa-plus" onclick="click表格Button(' + task.id + ', \'add\')"></i>' +
-				'<i class="fa gantt_button_grid gantt_grid_delete fa-times" onclick="click表格Button(' + task.id + ', \'delete\')"></i>');
+			return ('<i class="fa gantt_button_grid gantt_grid_edit fa-pencil" onclick="clickGridButton(' + task.id + ', \'edit\')"></i>' +
+				'<i class="fa gantt_button_grid gantt_grid_add fa-plus" onclick="clickGridButton(' + task.id + ', \'add\')"></i>' +
+				'<i class="fa gantt_button_grid gantt_grid_delete fa-times" onclick="clickGridButton(' + task.id + ', \'delete\')"></i>');
 		};
 	gantt.config.columns = [
 		{name: "text", tree: true, width: '*', resize: true},
@@ -70,13 +70,13 @@
 		}
 	];
 
-	function click表格Button(id, action) {
+	function clickGridButton(id, action) {
 		switch (action) {
 			case "edit":
-				gantt.show任务编辑框(id);
+				gantt.showLightbox(id);
 				break;
 			case "add":
-				gantt.create任务(null, id);
+				gantt.createTask(null, id);
 				break;
 			case "delete":
 				gantt.confirm({
@@ -84,7 +84,7 @@
 					text: gantt.locale.labels.confirm_deleting,
 					callback: function (res) {
 						if (res)
-							gantt.delete任务(id);
+							gantt.deleteTask(id);
 					}
 				});
 				break;

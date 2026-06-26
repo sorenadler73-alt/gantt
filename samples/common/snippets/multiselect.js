@@ -1,11 +1,11 @@
 gantt.form_blocks["multiselect"] = {
 	render: function(section) {
-		var rend文本 = "<div class='multiselect'><select class='lb_mult_input' multiple>";
+		var rendText = "<div class='multiselect'><select class='lb_mult_input' multiple>";
 		for(var i=0;i<section.options.length;i++) {
-			rend文本 += "<option value='" + section.options[i].key + "'>" + section.options[i].label + "</option>";
+			rendText += "<option value='" + section.options[i].key + "'>" + section.options[i].label + "</option>";
 		}
-		rend文本 += "</select>";
-		return rend文本 + "</div>";
+		rendText += "</select>";
+		return rendText + "</div>";
 	},
 	set_value: function(node, value, task, section) {
 		var select = node.querySelector(".lb_mult_input");

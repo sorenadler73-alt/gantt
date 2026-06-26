@@ -69,7 +69,7 @@
 
 
 	var renderResourceLine = function (resource, timeline) {
-		var tasks = gantt.get任务By("user", resource.id);
+		var tasks = gantt.getTaskBy("user", resource.id);
 		var timetable = calculateResourceLoad(tasks, timeline.getScale());
 
 		var row = document.createElement("div");
@@ -89,7 +89,7 @@
 			var el = document.createElement('div');
 			el.className = css;
 
-			el.style.css文本 = [
+			el.style.cssText = [
 				'left:' + sizes.left + 'px',
 				'width:' + sizes.width + 'px',
 				'position:absolute',
@@ -109,12 +109,12 @@
 		"taskBg"
 	];
 
-	var main表格Config = {
+	var mainGridConfig = {
 		columns: [
 			{name: "text", tree: true, width: 200, resize: true},
 			{name: "start_date", align: "center", width: 9, resize: true},
 			{
-				name: "owner", align: "center", width: 60, label: "负责人", template: function (task) {
+				name: "owner", align: "center", width: 60, label: "Owner", template: function (task) {
 					var store = gantt.getDatastore("resources");
 					var owner = store.getItem(task.user);
 					if (owner) {
@@ -138,14 +138,14 @@
 			},
 			{
 				name: "workload", label: "Workload", template: function (resource) {
-					var tasks = gantt.get任务By("user", resource.id);
+					var tasks = gantt.getTaskBy("user", resource.id);
 
-					var total工期 = 0;
+					var totalDuration = 0;
 					for (var i = 0; i < tasks.length; i++) {
-						total工期 += tasks[i].duration;
+						totalDuration += tasks[i].duration;
 					}
 
-					return (total工期 || 0) * 8 + "";
+					return (totalDuration || 0) * 8 + "";
 				}
 			}
 		]
@@ -156,7 +156,7 @@
 		rows: [
 			{
 				cols: [
-					{view: "grid", group:"grids", config: main表格Config, scrollY: "scrollVer"},
+					{view: "grid", group:"grids", config: mainGridConfig, scrollY: "scrollVer"},
 					{resizer: true, width: 1, group:"vertical"},
 					{view: "timeline", id: "timeline", scrollX: "scrollHor", scrollY: "scrollVer"},
 					{view: "scrollbar", id: "scrollVer", group:"vertical"}
@@ -168,7 +168,7 @@
 				cols: [
 					{
 						view: "grid",
-						id: "resource表格",
+						id: "resourceGrid",
 						group:"grids",
 						bind: "resources",
 						scrollY: "resourceVScroll"

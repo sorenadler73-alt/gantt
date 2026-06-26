@@ -41,9 +41,9 @@
 		if (item.progress >= 1) return "green";
 	};
 	gantt.config.columns = [
-		{name: "text", label: "任务名称", resize: true, tree: true, width: '*'},
+		{name: "text", label: "Task name", resize: true, tree: true, width: '*'},
 		{
-			name: "progress", label: "进度", resize: true, width: 80, align: "center",
+			name: "progress", label: "Progress", resize: true, width: 80, align: "center",
 			template: function (item) {
 				if (item.progress >= 1)
 					return "Complete";

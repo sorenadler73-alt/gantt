@@ -25,7 +25,7 @@
 <body>
 <div class="gantt_control">
 	<div class="filters_wrapper" id="filters_wrapper">
-		<label>Search 任务s:</label>
+		<label>Search Tasks:</label>
 		<input id='filter' class="gantt_input_styled" type='text' placeholder="Enter task name to filter"/>
 	</div>
 </div>
@@ -69,20 +69,20 @@
 	function filterLogic(task, match) {
 		match = match || false;
 		// check children
-		gantt.each任务(function (child) {
+		gantt.eachTask(function (child) {
 			if (filterLogic(child)) {
 				match = true;
 			}
 		}, task.id);
 
 		// check task
-		if (task.text.to低erCase().indexOf(filterValue.to低erCase()) > -1) {
+		if (task.text.toLowerCase().indexOf(filterValue.toLowerCase()) > -1) {
 			match = true;
 		}
 		return match;
 	}
 
-	gantt.attachEvent("onBefore任务Display", function (id, task) {
+	gantt.attachEvent("onBeforeTaskDisplay", function (id, task) {
 		if (!filterValue) {
 			return true;
 		}

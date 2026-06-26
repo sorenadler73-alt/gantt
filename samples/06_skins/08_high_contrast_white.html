@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<title>高对比度主题 - 白色</title>
@@ -26,8 +26,8 @@
 
 <body>
 <div class="gantt_control">
-	<input type="button" value="Show 任务编辑框" onclick="gantt.create任务()"/>
-	<input type="button" value="Show Quick Info" onclick="if (gantt.get任务ByTime()[0]) gantt.showQuickInfo(gantt.get任务ByTime()[0].id)"/>
+	<input type="button" value="Show Lightbox" onclick="gantt.createTask()"/>
+	<input type="button" value="Show Quick Info" onclick="if (gantt.getTaskByTime()[0]) gantt.showQuickInfo(gantt.getTaskByTime()[0].id)"/>
 	<input type="button" value="Show message" onclick="gantt.message({text:'Some text'})"/>
 	<input type="button" value="Show error" onclick="gantt.message({text:'Some text', type:'error'})"/>
 	<input type="button" value="Show alert" onclick="gantt.alert({text:'Some text'})"/>

@@ -22,7 +22,7 @@
 <body>
 
 <div class="gantt_control" >
-  <input type=button value="Toggle grid" onclick="toggle表格()">
+  <input type=button value="Toggle grid" onclick="toggleGrid()">
 </div>
 
 <div id="gantt_here" style="width: 100%; height: 90%;position: relative;"></div>
@@ -30,7 +30,7 @@
   <script>
 
 
-  function toggle表格(){
+  function toggleGrid(){
     gantt.config.show_grid = !gantt.config.show_grid;
     gantt.render();
   }
@@ -41,7 +41,7 @@
   gantt.config.end_date = new Date(2025, 05, 01);
   gantt.init("gantt_here");
 
-  gantt.attachEvent("on任务编辑框保存", function(id, task, is_new){
+  gantt.attachEvent("onLightboxSave", function(id, task, is_new){
     let repaint = false;
     if (+task.start_date <= +gantt.config.start_date){
       gantt.config.start_date = gantt.date.add(task.start_date, -1, "day");

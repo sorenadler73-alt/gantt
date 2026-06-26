@@ -29,10 +29,10 @@
 	gantt.config.scale_height = 20 * 3;
 
 	gantt.templates.timeline_cell_class = function (task, date) {
-		if (date.get小时() == 8) {
+		if (date.getHours() == 8) {
 			return "day_start";
 		}
-		if (date.get小时() == 18) {
+		if (date.getHours() == 18) {
 			return "day_end";
 		}
 		return "";
@@ -57,7 +57,7 @@
 	gantt.ignore_time = function (date) {
 		if (date.getDay() == 0 || date.getDay() == 6)
 			return true;
-		if (date.get小时() < 8 || date.get小时() > 18)
+		if (date.getHours() < 8 || date.getHours() > 18)
 			return true;
 
 		return false;

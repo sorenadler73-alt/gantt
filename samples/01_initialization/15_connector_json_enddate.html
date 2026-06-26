@@ -21,7 +21,7 @@
 	gantt.attachEvent("onAjaxError", function(request){
 		if (!request.status || !request.response){
 			gantt.message({
-				text: webserverWarning文本,
+				text: webserverWarningText,
 				expire: -1
 			})
 		}

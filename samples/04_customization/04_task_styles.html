@@ -36,17 +36,17 @@
 <script>
 	gantt.init("gantt_here");
 	gantt.config.columns = [
-		{name: "text", label: "任务名称", tree: true, width: "*", resize: true},
-		{name: "start_date", label: "开始 time", align: "center", resize: true},
+		{name: "text", label: "Task name", tree: true, width: "*", resize: true},
+		{name: "start_date", label: "Start time", align: "center", resize: true},
 		{
-			name: "priority", label: "优先级", align: "center", template: function (obj) {
+			name: "priority", label: "Priority", align: "center", template: function (obj) {
 				if (obj.priority == 1) {
-					return "高"
+					return "High"
 				}
 				if (obj.priority == 2) {
 					return "Medium"
 				}
-				return "低"
+				return "Low"
 			}
 		}
 	];

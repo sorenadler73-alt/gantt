@@ -23,8 +23,8 @@
 
 	gantt.attachEvent("onLinkClick", function (id) {
 		var link = this.getLink(id),
-			src = this.get任务(link.source),
-			trg = this.get任务(link.target),
+			src = this.getTask(link.source),
+			trg = this.getTask(link.target),
 			types = this.config.links;
 
 		var first = "", second = "";

@@ -15,7 +15,7 @@
 		{ "id": 13, "text": "Development", "type": "project", "start_date": "03-04-2025 00:00", "duration": 11, "parent": "11", "progress": 0.5, "owner": [{"resource_id":"5", "value": 100}]},
 		{ "id": 14, "text": "Analysis", "type": "task", "start_date": "03-04-2025 00:00", "duration": 6, "parent": "11", "progress": 0.8, "owner": [{"resource_id":"5", "value": 100}]},
 		{ "id": 15, "text": "Design", "type": "project", "start_date": "03-04-2025 00:00", "duration": 5, "parent": "11", "progress": 0.2, "owner": [{"resource_id":"5", "value": 100}]},
-		{ "id": 16, "text": "文档 creation", "type": "task", "start_date": "03-04-2025 00:00", "duration": 7, "parent": "11", "progress": 0, "owner": [{"resource_id":"7", "value": 100}], "priority":1},
+		{ "id": 16, "text": "Documentation creation", "type": "task", "start_date": "03-04-2025 00:00", "duration": 7, "parent": "11", "progress": 0, "owner": [{"resource_id":"7", "value": 100}], "priority":1},
 		{ "id": 17, "text": "Develop System", "type": "task", "start_date": "03-04-2025 00:00", "duration": 2, "parent": "13", "progress": 1, "owner": [{"resource_id":"8", "value": 100}], "priority":2},
 		{ "id": 25, "text": "Beta Release", "type": "milestone", "start_date": "06-04-2025 00:00", "parent": "13", "progress": 0, "owner": [{"resource_id":"5", "value": 100}], "duration": 0},
 		{ "id": 18, "text": "Integrate System", "type": "task", "start_date": "10-04-2025 00:00", "duration": 2, "parent": "13", "progress": 0.8, "owner": [{"resource_id":"6", "value": 100}], "priority":3},

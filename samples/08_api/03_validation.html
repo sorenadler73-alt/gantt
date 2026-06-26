@@ -25,7 +25,7 @@
 <script>
 
 	gantt.config.columns = [
-		{name: "text", label: "任务名称", resize: true, tree: true, width: '*'},
+		{name: "text", label: "Task name", resize: true, tree: true, width: '*'},
 		{name: "start_date", align: "center"},
 		{
 			name: "assigned", label: "Assigned to", resize: true, align: "center", width: 100,
@@ -39,8 +39,8 @@
 	gantt.init("gantt_here");
 	gantt.parse(users_data);
 
-	function validate资源(id) {
-		var task = gantt.get任务(id);
+	function validateResources(id) {
+		var task = gantt.getTask(id);
 		var from = new Date(task.start_date),
 			to = new Date(task.end_date),
 			busy_from = null,
@@ -49,7 +49,7 @@
 			busy = false;
 
 
-		var tasks = gantt.get任务ByTime(from, to);
+		var tasks = gantt.getTaskByTime(from, to);
 		for (var i = 0; i < tasks.length; i++) {
 			if (tasks[i].id != id && task.users.join() == tasks[i].users.join()) {
 				if (!busy_from || busy_from.valueOf() < tasks[i].start_date.valueOf())
@@ -69,7 +69,7 @@
 					return "busy";
 				}
 			};
-			gantt.message(task.users + " are already busy on <b>" + gantt.get任务(busy_task).text + "</b> at this time!");
+			gantt.message(task.users + " are already busy on <b>" + gantt.getTask(busy_task).text + "</b> at this time!");
 		} else {
 			gantt.templates.timeline_cell_class = function () {
 			};
@@ -80,17 +80,17 @@
 		return !busy;
 	}
 
-	gantt.attachEvent("onBefore任务Changed", function (id, mode, task) {
+	gantt.attachEvent("onBeforeTaskChanged", function (id, mode, task) {
 		if (mode == gantt.config.drag_mode.move || mode == gantt.config.drag_mode.resize) {
-			return validate资源(id);
+			return validateResources(id);
 		}
 		return true;
 	});
-	gantt.attachEvent("on任务编辑框保存", function (id, task, is_new) {
-		return validate资源(id);
+	gantt.attachEvent("onLightboxSave", function (id, task, is_new) {
+		return validateResources(id);
 	});
 
-	gantt.message("任务s cannot be assigned to the same dates of the same resources");
+	gantt.message("Tasks cannot be assigned to the same dates of the same resources");
 
 </script>
 </body>

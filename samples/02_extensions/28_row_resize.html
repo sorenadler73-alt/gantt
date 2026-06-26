@@ -34,7 +34,7 @@
 
 	// return false to discard the resize
 	gantt.attachEvent("onBeforeRowResize", function (item) {
-		gantt.message("开始 resizing <b>" + item.text + "</b>");
+		gantt.message("Start resizing <b>" + item.text + "</b>");
 		return true;
 	});
 
@@ -46,7 +46,7 @@
 				text: "<b>" + item.text + "</b> is now <b id='height_placeholder'></b><b>px</b> height"
 			});
 		}
-		document.getElementById("height_placeholder").inner文本 = currentHeight;
+		document.getElementById("height_placeholder").innerText = currentHeight;
 	});
 
 	// return false to discard the resize
@@ -69,8 +69,8 @@
 		task.bar_height = 30;
 		return true;
 	}
-	gantt.attachEvent("on任务加载中", fixBarHeight);
-	gantt.attachEvent("on任务Created", fixBarHeight);
+	gantt.attachEvent("onTaskLoading", fixBarHeight);
+	gantt.attachEvent("onTaskCreated", fixBarHeight);
 
 	gantt.init("gantt_here");
 

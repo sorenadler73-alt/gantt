@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>dhtmlx布局 单元格中的甘特图（dhtmlxSuite v8.x）</title>
+	<title>dhtmlxLayout 单元格中的甘特图（dhtmlxSuite v8.x）</title>
 	<script src="https://cdn.dhtmlx.com/suite/8.3/suite.js"></script>
 	<script src="../../codebase/dhtmlxgantt.js"></script>
 	<link rel="stylesheet" href="../../codebase/dhtmlxgantt.css">
@@ -19,7 +19,7 @@
 
 	<script>
 		window.addEventListener("DOMContentLoaded", function(){
-			let layout = new dhx.布局("layout", {
+			let layout = new dhx.Layout("layout", {
 				css: "dhx_layout-cell--bordered",
 				rows: [
 					{
@@ -81,7 +81,7 @@
 			});
 
 			gantt.message({
-					text:"This example uses DHTMLX Suite's 布局 which can be used under GPLv2 license or has to be obtained separately. <br><br> You can do this or use a third-party datepicker widget instead.",
+					text:"This example uses DHTMLX Suite's Layout which can be used under GPLv2 license or has to be obtained separately. <br><br> You can do this or use a third-party datepicker widget instead.",
 					expire:1000*30
 			});
 		});

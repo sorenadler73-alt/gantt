@@ -24,13 +24,13 @@
 
 <script>
 	gantt.config.columns = [
-		{name: "text", label: "任务名称", tree: true, resize: true, width: 230, template: function (task) {
+		{name: "text", label: "Task name", tree: true, resize: true, width: 230, template: function (task) {
 			if (task.priority == 1)
 				return "<div class='important'>" + task.text + " (" + task.users + ") </div>";
 			return task.text + " (" + task.users + ")";
 		}},
-		{name: "start_date", label: "开始 time", resize: true, align: "center"},
-		{name: "duration", label: "工期", align: "center"}
+		{name: "start_date", label: "Start time", resize: true, align: "center"},
+		{name: "duration", label: "Duration", align: "center"}
 	];
 	gantt.init("gantt_here");
 	gantt.parse(users_data);

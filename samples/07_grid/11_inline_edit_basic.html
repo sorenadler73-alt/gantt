@@ -21,14 +21,14 @@
 <div id="gantt_here" style='width:100%; height:100%;'></div>
 <script>
 	gantt.serverList("priority", [
-		{key: "1", label: "低"},
-		{key: "2", label: "普通"},
-		{key: "3", label: "高"}
+		{key: "1", label: "Low"},
+		{key: "2", label: "Normal"},
+		{key: "3", label: "High"}
 	]);
 
-	var text编辑or = {type: "text", map_to: "text"};
-	var date编辑or = {type: "date", map_to: "start_date", min: new Date(2023, 0, 1), max: new Date(2024, 0, 1)};
-	var duration编辑or = {type: "number", map_to: "duration", min:0, max: 100};
+	var textEditor = {type: "text", map_to: "text"};
+	var dateEditor = {type: "date", map_to: "start_date", min: new Date(2023, 0, 1), max: new Date(2024, 0, 1)};
+	var durationEditor = {type: "number", map_to: "duration", min:0, max: 100};
 	var priority = {type: "select", map_to: "priority", options:gantt.serverList("priority")};
 
 	function priorityLabel(task){
@@ -43,10 +43,10 @@
 	}
 
 	gantt.config.columns = [
-		{name: "text", tree: true, width: 200, resize: true, editor: text编辑or},
-		{name: "start_date", align: "center", width: 100, resize: true, editor: date编辑or},
-		{name: "duration", align: "center", width: 90, resize: true, editor: duration编辑or},
-		{name: "priority", label: "优先级", width:80, align: "center", resize: true, editor: priority, template: priorityLabel},
+		{name: "text", tree: true, width: 200, resize: true, editor: textEditor},
+		{name: "start_date", align: "center", width: 100, resize: true, editor: dateEditor},
+		{name: "duration", align: "center", width: 90, resize: true, editor: durationEditor},
+		{name: "priority", label: "Priority", width:80, align: "center", resize: true, editor: priority, template: priorityLabel},
 		{name: "add", width: 44}
 	];
 

@@ -1,0 +1,210 @@
+/**
+ * 安全翻译：仅处理 <title> 标签和 JSON/JS 中的任务名称字符串
+ */
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const rootDir = path.resolve(__dirname, "..");
+
+const titleMap = [
+	["Basic initialization", "基础初始化"],
+	["Load data from JSON file", "从 JSON 文件加载数据"],
+	["Load data from XML file", "从 XML 文件加载数据"],
+	["Backend storage using REST API", "使用 REST API 的后端存储"],
+	["jQuery integration", "jQuery 集成"],
+	["Define displayed date range", "定义显示的日期范围"],
+	["Fixed size gantt", "固定尺寸甘特图"],
+	["Clickable links", "可点击的关联"],
+	["Localization", "本地化"],
+	["Project duration", "项目工期"],
+	["Reinitialize in another container", "在另一个容器中重新初始化"],
+	["Loading tasks with start/end dates", "加载带开始/结束日期的任务"],
+	["Projects and milestones", "项目与里程碑"],
+	["Bootstrap layout", "Bootstrap 布局"],
+	["Backward planning", "逆向计划"],
+	["Tasks outside the timescale", "时间刻度外的任务"],
+	["QuickInfo extension", "QuickInfo 扩展"],
+	["Tooltip", "工具提示"],
+	["Full Screen", "全屏"],
+	["Working with 30000 tasks", "处理 30000 个任务"],
+	["Custom Tooltips", "自定义工具提示"],
+	["Create new tasks by Drag and Drop", "通过拖放创建新任务"],
+	["Full Screen with additional elements", "全屏（含附加元素）"],
+	["Resizable rows in grid", "表格中可调整行高"],
+	["Multiple scales", "多刻度"],
+	["Month view", "月视图"],
+	["Step config for the Quarter scale", "季度刻度的步进配置"],
+	["Day hours", "日小时视图"],
+	["Dynamic scales", "动态刻度"],
+	["Custom scales", "自定义刻度"],
+	["Minutes timeline", "分钟时间轴"],
+	["Auto resize scale", "自动调整刻度大小"],
+	["Show working hours", "显示工作时间"],
+	["Selecting columns", "选择列"],
+	["Year quarters scale", "年季度刻度"],
+	["Zoom To Fit", "缩放至适合"],
+	["Mouse wheel zoom", "鼠标滚轮缩放"],
+	["Define side content", "定义侧边内容"],
+	["Custom tree formatting", "自定义树形格式"],
+	["Link styles", "关联样式"],
+	["Task styles", "任务样式"],
+	["Template for tree nodes", "树节点模板"],
+	["Highlighting weekends", "高亮周末"],
+	["Text in the Progress bar", "进度条中的文本"],
+	["Styling task bars with events", "使用事件设置任务条样式"],
+	["Custom html content (Stackbar)", "自定义 HTML 内容（堆叠条）"],
+	["Custom task type", "自定义任务类型"],
+	["Expand container (autosize)", "扩展容器（自动调整大小）"],
+	["Specify inline colors for Tasks and Links", "为任务和关联指定内联颜色"],
+	["Create summary tasks dynamically (auto_types)", "动态创建摘要任务（auto_types）"],
+	["Gantt message types", "甘特图消息类型"],
+	["Custom content inside the timeline cells", "时间轴单元格中的自定义内容"],
+	["Lightbox customization", "任务编辑框自定义"],
+	["Checkbox control", "复选框控件"],
+	["Progress lightbox", "进度任务编辑框"],
+	["Radio control", "单选控件"],
+	["Validate lightbox values", "验证任务编辑框值"],
+	["Custom control in the lightbox", "任务编辑框中的自定义控件"],
+	["Template control", "模板控件"],
+	["Custom button in the lightbox", "任务编辑框中的自定义按钮"],
+	["Time control", "时间控件"],
+	["Parent selector", "父任务选择器"],
+	["Specify year selector range", "指定年份选择范围"],
+	["Slider control in lightbox", "任务编辑框中的滑块控件"],
+	["Datepicker in lightbox", "任务编辑框中的日期选择器"],
+	["Select control", "下拉选择控件"],
+	["3rd party multiselect control", "第三方多选控件"],
+	["Readonly lightbox", "只读任务编辑框"],
+	["Default skin", "默认皮肤"],
+	["Task edit form", "任务编辑表单"],
+	["'Skyblue' skin", "「Skyblue」皮肤"],
+	["'Meadow' skin", "「Meadow」皮肤"],
+	["'Broadway' skin", "「Broadway」皮肤"],
+	["Change skin dynamically", "动态切换皮肤"],
+	["High contrast theme - Black", "高对比度主题 - 黑色"],
+	["High contrast theme - White", "高对比度主题 - 白色"],
+	["Dark skin", "深色皮肤"],
+	["Built-in sorting", "内置排序"],
+	["Branch ordering", "分支排序"],
+	["Basic filtering", "基础筛选"],
+	["Task Name Search Filter", "任务名称搜索筛选"],
+	["Custom sorting function", "自定义排序函数"],
+	["Using sorting methods", "使用排序方法"],
+	["Render Gantt chart without grid", "无表格渲染甘特图"],
+	["Custom Buttons in a Grid", "表格中的自定义按钮"],
+	["Drag and drop rows in Grid", "在表格中拖放行"],
+	["Inline editing", "行内编辑"],
+	["Inline editing - Custom keyboard mapping", "行内编辑 - 自定义键盘映射"],
+	["Branch ordering - highlighting mode", "分支排序 - 高亮模式"],
+	["D'n'D Events", "拖放事件"],
+	["Limit drag and drop dates", "限制拖放日期"],
+	["Assignment Validation", "分配验证"],
+	["Fixed project dates", "固定项目日期"],
+	["Drag parent task with its children", "拖拽父任务及其子任务"],
+	["Export data from Gantt", "从甘特图导出数据"],
+	["Export with custom styles", "使用自定义样式导出"],
+	["Export data : MS Project, PrimaveraP6, Excel & iCal", "导出数据：MS Project、PrimaveraP6、Excel 和 iCal"],
+	["Export data: store online", "导出数据：在线存储"],
+	["Predefined Project Structure", "预定义项目结构"],
+	["Dynamically move task text to the right side", "动态将任务文本移至右侧"],
+	["Calculate Progress of Summary Tasks", "计算摘要任务进度"],
+	["Import MS Project file", "导入 MS Project 文件"],
+	["Import Primavera P6 file", "导入 Primavera P6 文件"],
+	["Draggable projects", "可拖拽的项目"],
+	["Import Excel file", "导入 Excel 文件"],
+	["Custom data api - using local storage", "自定义数据 API - 使用本地存储"],
+	["Show empty state screen", "显示空状态界面"],
+	["Grid columns rightside of gantt", "甘特图右侧表格列"],
+	["Gantt chart with resource panel", "带资源面板的甘特图"],
+	["Time scale at the bottom of gantt", "甘特图底部时间刻度"],
+	["Right to left gantt", "从右到左的甘特图"],
+	["Multiple Gantts on the page", "页面上的多个甘特图"],
+	["Gantts in dhtmlxLayout cells (dhtmlxSuite v8.x)", "dhtmlxLayout 单元格中的甘特图（dhtmlxSuite v8.x）"],
+	["jQuery initialization", "jQuery 初始化"],
+	["Keyboard navigation, multiple gantts", "键盘导航（多个甘特图）"],
+	["Using gantt constructor and destructor", "使用甘特图构造与析构"],
+].sort((a, b) => b[0].length - a[0].length);
+
+const dataMap = [
+	["Intermediate milestone", "中间里程碑"],
+	["Final milestone", "最终里程碑"],
+	["Website redesign", "网站改版"],
+	["Visual design", "视觉设计"],
+	["Wireframes", "线框图"],
+	["Research", "调研"],
+	["Launch", "上线"],
+	["Project #1", "项目 #1"],
+	["Project #2", "项目 #2"],
+	["Project #3", "项目 #3"],
+	["Task #1", "任务 #1"],
+	["Task #2", "任务 #2"],
+	["Task #3", "任务 #3"],
+	["Task #4", "任务 #4"],
+	["Task #2.1", "任务 #2.1"],
+	["Task #2.2", "任务 #2.2"],
+	["Task #2.3", "任务 #2.3"],
+	["Task #2.4", "任务 #2.4"],
+	["Task #4.1", "任务 #4.1"],
+	["Task #4.2", "任务 #4.2"],
+].sort((a, b) => b[0].length - a[0].length);
+
+function walk(dir, callback) {
+	for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+		const full = path.join(dir, entry.name);
+		if (entry.isDirectory()) {
+			if (entry.name === "codehighlight") continue;
+			walk(full, callback);
+		} else {
+			callback(full);
+		}
+	}
+}
+
+function translateTitles(content) {
+	let result = content;
+	for (const [from, to] of titleMap) {
+		result = result.replace(new RegExp(`(<title>\\s*)${escapeReg(from)}(\\s*</title>)`, "g"), `$1${to}$2`);
+	}
+	return result;
+}
+
+function translateDataStrings(content) {
+	let result = content;
+	for (const [from, to] of dataMap) {
+		result = result.split(`"${from}"`).join(`"${to}"`);
+		result = result.split(`'${from}'`).join(`'${to}'`);
+	}
+	return result;
+}
+
+function escapeReg(s) {
+	return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+const samplesDir = path.join(rootDir, "samples");
+const backendDir = path.join(rootDir, "scripts", "backend");
+let count = 0;
+
+for (const dir of [samplesDir, backendDir]) {
+	walk(dir, (file) => {
+		const ext = path.extname(file);
+		if (![".html", ".js", ".json"].includes(ext)) return;
+		if (file.endsWith("index.html")) return;
+
+		const original = fs.readFileSync(file, "utf8");
+		let updated = translateTitles(original);
+		if (ext !== ".html" || file.includes("data") || file.endsWith(".json")) {
+			updated = translateDataStrings(updated);
+		} else if (ext === ".html") {
+			updated = translateDataStrings(updated);
+		}
+		if (updated !== original) {
+			fs.writeFileSync(file, updated, "utf8");
+			count++;
+		}
+	});
+}
+
+console.log(`Safe sample translation done. ${count} files updated.`);

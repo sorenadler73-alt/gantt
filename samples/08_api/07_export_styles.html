@@ -33,17 +33,17 @@
 	});
 
 	gantt.config.columns = [
-		{name: "text", label: "任务名称", tree: true, resize: true, width: "*"},
-		{name: "start_date", label: "开始 time", resize: true, align: "center"},
+		{name: "text", label: "Task name", tree: true, resize: true, width: "*"},
+		{name: "start_date", label: "Start time", resize: true, align: "center"},
 		{
-			name: "priority", label: "优先级", resize: true, align: "center", template: function (obj) {
+			name: "priority", label: "Priority", resize: true, align: "center", template: function (obj) {
 				if (obj.priority == 1) {
-					return "高"
+					return "High"
 				}
 				if (obj.priority == 2) {
 					return "Medium"
 				}
-				return "低"
+				return "Low"
 			}
 		}
 	];

@@ -1,4 +1,4 @@
-window.webserverWarning文本 = `
+window.webserverWarningText = `
 The data loading feature requires running the sample from a web server. Please follow these steps: <br><br>
 
 For data loading to work:<br>

@@ -39,14 +39,14 @@
 
 
 	// recalculate progress of summary tasks when the progress of subtasks changes
-	(function dynamic进度() {
+	(function dynamicProgress() {
 
-		function calculateSummary进度(task) {
+		function calculateSummaryProgress(task) {
 			if (task.type != gantt.config.types.project)
 				return task.progress;
 			var totalToDo = 0;
 			var totalDone = 0;
-			gantt.each任务(function (child) {
+			gantt.eachTask(function (child) {
 				if (child.type != gantt.config.types.project) {
 					totalToDo += child.duration;
 					totalDone += (child.progress || 0) * child.duration;
@@ -56,54 +56,54 @@
 			else return totalDone / totalToDo;
 		}
 
-		function refreshSummary进度(id, submit) {
-			if (!gantt.is任务Exists(id))
+		function refreshSummaryProgress(id, submit) {
+			if (!gantt.isTaskExists(id))
 				return;
 
-			var task = gantt.get任务(id);
-			var new进度 = calculateSummary进度(task);
+			var task = gantt.getTask(id);
+			var newProgress = calculateSummaryProgress(task);
 			
-			if (new进度 !== task.progress) {
-				task.progress = new进度;
+			if (newProgress !== task.progress) {
+				task.progress = newProgress;
 
 				if (!submit) {
-					gantt.refresh任务(id);
+					gantt.refreshTask(id);
 				} else {
-					gantt.update任务(id);
+					gantt.updateTask(id);
 				}
 			}
 
 			if (!submit && gantt.getParent(id) !== gantt.config.root_id) {
-				refreshSummary进度(gantt.getParent(id), submit);
+				refreshSummaryProgress(gantt.getParent(id), submit);
 			}
 		}
 
 
 		gantt.attachEvent("onParse", function () {
-			gantt.each任务(function (task) {
-				task.progress = calculateSummary进度(task);
+			gantt.eachTask(function (task) {
+				task.progress = calculateSummaryProgress(task);
 			});
 		});
 
-		gantt.attachEvent("onAfter任务Update", function (id) {
-			refreshSummary进度(gantt.getParent(id), true);
+		gantt.attachEvent("onAfterTaskUpdate", function (id) {
+			refreshSummaryProgress(gantt.getParent(id), true);
 		});
 
-		gantt.attachEvent("on任务Drag", function (id) {
-			refreshSummary进度(gantt.getParent(id), false);
+		gantt.attachEvent("onTaskDrag", function (id) {
+			refreshSummaryProgress(gantt.getParent(id), false);
 		});
-		gantt.attachEvent("onAfter任务添加", function (id) {
-			refreshSummary进度(gantt.getParent(id), true);
+		gantt.attachEvent("onAfterTaskAdd", function (id) {
+			refreshSummaryProgress(gantt.getParent(id), true);
 		});
 
 
 		(function () {
-			var idParentBefore删除任务 = 0;
-			gantt.attachEvent("onBefore任务删除", function (id) {
-				idParentBefore删除任务 = gantt.getParent(id);
+			var idParentBeforeDeleteTask = 0;
+			gantt.attachEvent("onBeforeTaskDelete", function (id) {
+				idParentBeforeDeleteTask = gantt.getParent(id);
 			});
-			gantt.attachEvent("onAfter任务删除", function () {
-				refreshSummary进度(idParentBefore删除任务, true);
+			gantt.attachEvent("onAfterTaskDelete", function () {
+				refreshSummaryProgress(idParentBeforeDeleteTask, true);
 			});
 		})();
 	})();
@@ -116,14 +116,14 @@
 			{id: 13, text: "任务 #2", start_date: "", duration: "", parent: "11", progress: 0.4, open: true, type: gantt.config.types.project},
 			{id: 14, text: "任务 #3", start_date: "02-04-2023", duration: "6", parent: "11", progress: 0.8, open: true, type: gantt.config.types.task},
 			{id: 15, text: "任务 #4", start_date: "", duration: "", parent: "11", progress: 0.18, open: true, type: gantt.config.types.project},
-			{id: 16, text: "任务 #5", start_date: "02-04-2023", duration: "7", parent: "11", progress: 0, open: true, type: gantt.config.types.task},
+			{id: 16, text: "Task #5", start_date: "02-04-2023", duration: "7", parent: "11", progress: 0, open: true, type: gantt.config.types.task},
 			{id: 17, text: "任务 #2.1", start_date: "03-04-2023", duration: "2", parent: "13", progress: 1, open: true, type: gantt.config.types.task},
 			{id: 18, text: "任务 #2.2", start_date: "06-04-2023", duration: "3", parent: "13", progress: 0.8, open: true, type: gantt.config.types.task},
 			{id: 19, text: "任务 #2.3", start_date: "10-04-2023", duration: "4", parent: "13", progress: 0.2, open: true, type: gantt.config.types.task},
 			{id: 20, text: "任务 #2.4", start_date: "10-04-2023", duration: "4", parent: "13", progress: 0, open: true, type: gantt.config.types.task},
 			{id: 21, text: "任务 #4.1", start_date: "03-04-2023", duration: "4", parent: "15", progress: 0.5, open: true, type: gantt.config.types.task},
 			{id: 22, text: "任务 #4.2", start_date: "03-04-2023", duration: "4", parent: "15", progress: 0.1, open: true, type: gantt.config.types.task},
-			{id: 23, text: "任务 #4.3", start_date: "03-04-2023", duration: "5", parent: "15", progress: 0, open: true, type: gantt.config.types.task}
+			{id: 23, text: "Task #4.3", start_date: "03-04-2023", duration: "5", parent: "15", progress: 0, open: true, type: gantt.config.types.task}
 		],
 		links: [
 			{id: "10", source: "11", target: "12", type: "1"},

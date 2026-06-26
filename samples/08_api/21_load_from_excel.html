@@ -70,8 +70,8 @@
 <div class="gantt_control" style="text-align: center; padding: 5px;">
 	<p>
 		You can use any XLSX file or download this sample <a class="xlsx-sample"
-																		   href="../common/演示项目.xlsx"
-																		   target="_blank">演示项目.xlsx</a>
+																		   href="../common/DemoProject.xlsx"
+																		   target="_blank">DemoProject.xlsx</a>
 	</p>
 	<p>
 	<form id="excelImport" action="" method="POST" enctype="multipart/form-data">
@@ -105,8 +105,8 @@
 	gantt.init("gantt_here");
 
 	var fileDnD = fileDragAndDrop();
-	fileDnD.file类型Message = "Only XLSX or XLS files are supported!";
-	fileDnD.dndFile类型Message = "Please try XLSX or XLS project file.";
+	fileDnD.fileTypeMessage = "Only XLSX or XLS files are supported!";
+	fileDnD.dndFileTypeMessage = "Please try XLSX or XLS project file.";
 	fileDnD.dndHint = "Drop Excel file into Gantt";
 	fileDnD.mode = "excel";
 	fileDnD.init(gantt.$container);
@@ -119,7 +119,7 @@
 	}
 
 	function to_snake_case(name){
-		return (name + "").to低erCase().replace(/ /, "_");
+		return (name + "").toLowerCase().replace(/ /, "_");
 	}
 	function loadTable(mapping, data){
 		var ganttDataset = {
@@ -198,8 +198,8 @@
 						type:"excel-form",
 						text: "<table>" + body.join("") + "</table>",
 						buttons: [
-							{ label:"保存",   css:"link_save_btn",   value:"save" },
-							{ label:"取消", css:"link_cancel_btn", value:"cancel" }
+							{ label:"Save",   css:"link_save_btn",   value:"save" },
+							{ label:"Cancel", css:"link_cancel_btn", value:"cancel" }
 						],
 						callback: function(result){
 							switch(result){
@@ -212,7 +212,7 @@
 									loadTable(mapping, project);
 									break;
 								case "cancel":
-									//取消
+									//Cancel
 									break;
 							}
 						}
